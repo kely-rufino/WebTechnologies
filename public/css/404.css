@@ -1,0 +1,55 @@
+/* ===== 404 ERROR PAGE STYLES ===== */
+
+.error-section {
+    padding: 6rem 0;
+    background-color: #f8f9fa;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.error-content {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.error-title {
+    font-size: 8rem;
+    font-weight: 700;
+    color: #667eea;
+    margin: 0;
+    text-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.error-content h2 {
+    font-size: 2rem;
+    color: #333;
+    margin: 1rem 0;
+}
+
+.error-content p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ===== 404 PAGE RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .error-title {
+        font-size: 6rem;
+    }
+}

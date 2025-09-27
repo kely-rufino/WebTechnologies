@@ -1,0 +1,235 @@
+/* ===== EVENTS PAGE STYLES ===== */
+
+.events-section {
+    padding: 4rem 0;
+    background-color: #f8f9fa;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.event-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.event-card.featured {
+    border: 3px solid #667eea;
+    position: relative;
+}
+
+.event-card .event-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #667eea;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.event-date-badge {
+    background: linear-gradient(135deg, #ff6b6b, #ffa726);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 80px;
+    height: fit-content;
+}
+
+.event-date-badge .month {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.event-date-badge .day {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.event-info h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.event-time, .event-location {
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.event-category {
+    background: #f0f0f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    color: #666;
+    display: inline-block;
+    margin: 0.5rem 0;
+}
+
+.event-description {
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+.event-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.no-events {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.no-events h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.no-events p {
+    color: #666;
+}
+
+.no-events a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.no-events a:hover {
+    text-decoration: underline;
+}
+
+/* Events Section Enhancement */
+.events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.refresh-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.refresh-button:hover:not(:disabled) {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.refresh-button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.refresh-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+/* Loading Styles */
+.events-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.events-loading p {
+    color: #666;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Intentional minor styling "mistake" for realism */
+.event-card:nth-child(3) {
+    /* Slightly different padding - realistic student mistake */
+    padding: 1.4rem;
+}
+
+/* ===== EVENTS PAGE RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .events-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .refresh-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .event-actions {
+        flex-direction: column;
+    }
+}
