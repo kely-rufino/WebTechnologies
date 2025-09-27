@@ -69,6 +69,15 @@ const eventQueries = {
         ORDER BY e.date ASC, e.start_time ASC
     `),
     
+    // Get upcoming events by category
+    getUpcomingEventsByCategory: db.prepare(`
+        SELECT e.*, c.name as category_name
+        FROM events e
+        LEFT JOIN categories c ON e.category_id = c.id
+        WHERE e.category_id = ? AND e.date >= DATE('now')
+        ORDER BY e.date ASC, e.start_time ASC
+    `),
+    
     // Get upcoming events
     getUpcomingEvents: db.prepare(`
         SELECT e.*, c.name as category_name

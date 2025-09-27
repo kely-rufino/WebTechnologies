@@ -26,9 +26,9 @@
         <% if (showActions !== false) { %>
         <div class="area-actions">
             <% if (isHomepage) { %>
-                <button class="area-button">View All <%= area.name %></button>
+                <a href="/events?category=<%= area.id %>" class="area-button">View All <%= area.name %></a>
             <% } else { %>
-                <button class="btn-primary">Get Involved</button>
+                <a href="/events?category=<%= area.id %>" class="btn-primary">Get Involved</a>
                 <button class="btn-secondary">Learn More</button>
             <% } %>
         </div>

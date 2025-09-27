@@ -212,12 +212,33 @@ app.get('/', async (req, res) => {
 
 app.get('/events', async (req, res) => {
   try {
-    // Get only upcoming events from database (already filtered and sorted at DB level)
-    const upcomingEvents = DatabaseService.getAllUpcomingEvents();
+    const categoryId = req.query.category;
+    let events;
+    let pageTitle = 'Events - Local Community Portal';
+    let categoryInfo = null;
+    
+    if (categoryId) {
+      // Get upcoming events for specific category (filtered at DB level)
+      events = DatabaseService.getUpcomingEventsByCategory(parseInt(categoryId));
+      
+      // Get category information for the page title
+      try {
+        categoryInfo = DatabaseService.getCategoryById(parseInt(categoryId));
+        if (categoryInfo) {
+          pageTitle = `${categoryInfo.name} Events - Local Community Portal`;
+        }
+      } catch (error) {
+        console.error('Error fetching category info:', error);
+      }
+    } else {
+      // Get all upcoming events
+      events = DatabaseService.getAllUpcomingEvents();
+    }
     
     res.render('events', { 
-      events: upcomingEvents,
-      title: 'Events - Local Community Portal'
+      events,
+      categoryInfo,
+      title: pageTitle
     });
   } catch (error) {
     console.error('Error loading events:', error);

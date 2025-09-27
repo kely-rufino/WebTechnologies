@@ -14,8 +14,22 @@
     <main style="margin-top: 80px;">
         <section class="events-section">
             <div class="container">
-                <h1 class="page-title">Community Events</h1>
-                <p class="page-subtitle">Discover all upcoming events and activities in our community</p>
+                <h1 class="page-title">
+                    <% if (categoryInfo) { %>
+                        <%= categoryInfo.name %> Events
+                    <% } else { %>
+                        Community Events
+                    <% } %>
+                </h1>
+                <p class="page-subtitle">
+                    <% if (categoryInfo) { %>
+                        Discover upcoming <%= categoryInfo.name.toLowerCase() %> events and activities
+                        <br>
+                        <a href="/events" class="btn-secondary" style="margin-top: 10px;">← View All Events</a>
+                    <% } else { %>
+                        Discover all upcoming events and activities in our community
+                    <% } %>
+                </p>
                 
                 <div class="events-grid">
                     <% events.forEach(event => { %>
@@ -36,15 +50,18 @@
                         </div>
                         <div class="event-info">
                             <h3><%= event.title %></h3>
+                            <% if (event.category_name && event.category_id) { %>
+                                <div class="event-category-pill">
+                                    <a href="/events?category=<%= event.category_id %>" class="category-pill">
+                                        <%= event.category_name %>
+                                    </a>
+                                </div>
+                            <% } %>
                             <p class="event-time"><%= event.time %></p>
                             <p class="event-location">📍 <%= event.location %></p>
-                            <% if (event.category) { %>
-                                <p class="event-category">Category: <%= event.category %></p>
-                            <% } %>
                             <p class="event-description"><%= event.description %></p>
                             <div class="event-actions">
                                 <button class="btn-primary">Register</button>
-                                <button class="btn-secondary">Learn More</button>
                             </div>
                         </div>
                     </div>

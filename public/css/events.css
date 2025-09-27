@@ -92,6 +92,32 @@
     margin: 0.5rem 0;
 }
 
+.event-category-pill {
+    margin: 0.5rem 0;
+}
+
+.category-pill {
+    display: inline-block;
+    background: #6879E3;
+    color: white;
+    padding: 0.3rem 0.7rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid #6879E3;
+}
+
+.category-pill:hover {
+    background: #5a67d8;
+    border-color: #5a67d8;
+    color: white;
+    text-decoration: none;
+    transform: none;
+}
+
 .event-description {
     color: #6c757d;
     line-height: 1.5;

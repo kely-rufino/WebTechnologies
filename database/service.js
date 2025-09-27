@@ -62,6 +62,15 @@ class DatabaseService {
         }
     }
 
+    static getUpcomingEventsByCategory(categoryId) {
+        try {
+            return eventQueries.getUpcomingEventsByCategory.all(categoryId);
+        } catch (error) {
+            console.error('Error fetching upcoming events by category:', error);
+            throw new Error('Failed to fetch upcoming events by category');
+        }
+    }
+
     static getUpcomingEvents(limit = 10) {
         try {
             return eventQueries.getUpcomingEvents.all(limit);
