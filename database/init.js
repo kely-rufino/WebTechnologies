@@ -44,6 +44,21 @@ const createEventsTable = `
     )
 `;
 
+// Create contact messages table
+const createContactMessagesTable = `
+    CREATE TABLE IF NOT EXISTS contact_messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        phone TEXT,
+        subject TEXT NOT NULL,
+        area TEXT,
+        message TEXT NOT NULL,
+        newsletter BOOLEAN DEFAULT FALSE,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+`;
+
 try {
     // Execute table creation
     db.exec(createCategoriesTable);
@@ -51,6 +66,9 @@ try {
     
     db.exec(createEventsTable);
     console.log('✓ Events table created/verified');
+    
+    db.exec(createContactMessagesTable);
+    console.log('✓ Contact messages table created/verified');
     
     // Insert default categories if table is empty
     const categoryCount = db.prepare('SELECT COUNT(*) as count FROM categories').get();
@@ -62,13 +80,13 @@ try {
         `);
         
         const defaultCategories = [
-            ['Sports & Recreation', 'Local sports clubs, fitness classes, recreational activities, and community leagues', '/images/sports.jpg'],
-            ['Health & Wellness', 'Healthcare services, wellness programmes, and health-focused community initiatives', '/images/health.jpg'],
-            ['Education & Learning', 'Educational programmes, workshops, tutoring services, and lifelong learning opportunities', '/images/education.jpg'],
-            ['Arts & Culture', 'Cultural events, art classes, music programmes, and creative community initiatives', '/images/arts.jpg'],
-            ['Environment & Sustainability', 'Environmental initiatives, community gardens, and sustainability programmes', '/images/environment.jpg'],
-            ['Social Services', 'Community support services, volunteer opportunities, and social assistance programmes', '/images/social.jpg'],
-            ['Shop Safe, Shop Local', 'Support local businesses, shop safely, and connect with neighbourhood sellers and services', '/images/local-business.jpg']
+            ['Sports & Recreation', 'Local sports clubs, fitness classes, recreational activities, and community leagues', '/images/sports.png'],
+            ['Health & Wellness', 'Healthcare services, wellness programmes, and health-focused community initiatives', '/images/health.png'],
+            ['Education & Learning', 'Educational programmes, workshops, tutoring services, and lifelong learning opportunities', '/images/education.png'],
+            ['Arts & Culture', 'Cultural events, art classes, music programmes, and creative community initiatives', '/images/arts.png'],
+            ['Environment & Sustainability', 'Environmental initiatives, community gardens, and sustainability programmes', '/images/environment.png'],
+            ['Social Services', 'Community support services, volunteer opportunities, and social assistance programmes', '/images/social.png'],
+            ['Shop Safe, Shop Local', 'Support local businesses, shop safely, and connect with neighbourhood sellers and services', '/images/local-business.png']
         ];
         
         defaultCategories.forEach(category => {

@@ -1,4 +1,4 @@
-const { categoryQueries, eventQueries, utilityQueries } = require('./queries');
+const { categoryQueries, eventQueries, contactMessageQueries, utilityQueries } = require('./queries');
 
 /**
  * Database service layer providing high-level methods for database operations
@@ -170,6 +170,63 @@ class DatabaseService {
         } catch (error) {
             console.error('Error fetching events by location:', error);
             throw new Error('Failed to fetch events by location');
+        }
+    }
+
+    // Contact message methods
+    static getAllContactMessages() {
+        try {
+            return contactMessageQueries.getAllMessages.all();
+        } catch (error) {
+            console.error('Error fetching contact messages:', error);
+            throw new Error('Failed to fetch contact messages');
+        }
+    }
+
+    static getContactMessageById(id) {
+        try {
+            return contactMessageQueries.getMessageById.get(id);
+        } catch (error) {
+            console.error('Error fetching contact message by ID:', error);
+            throw new Error('Failed to fetch contact message');
+        }
+    }
+
+    static createContactMessage(messageData) {
+        try {
+            const { name, email, phone, subject, area, message, newsletter } = messageData;
+            const result = contactMessageQueries.createMessage.run(
+                name, 
+                email, 
+                phone || null, 
+                subject, 
+                area || null, 
+                message, 
+                newsletter ? 1 : 0  // Convert boolean to integer for SQLite
+            );
+            return { id: result.lastInsertRowid, ...messageData };
+        } catch (error) {
+            console.error('Error creating contact message:', error);
+            throw new Error('Failed to create contact message');
+        }
+    }
+
+    static getContactMessagesForAPI() {
+        try {
+            return contactMessageQueries.getMessagesForAPI.all();
+        } catch (error) {
+            console.error('Error fetching contact messages for API:', error);
+            throw new Error('Failed to fetch contact messages for API');
+        }
+    }
+
+    static deleteContactMessage(id) {
+        try {
+            const result = contactMessageQueries.deleteMessage.run(id);
+            return result.changes > 0;
+        } catch (error) {
+            console.error('Error deleting contact message:', error);
+            throw new Error('Failed to delete contact message');
         }
     }
 

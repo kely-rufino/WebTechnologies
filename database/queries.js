@@ -146,6 +146,40 @@ const eventQueries = {
     `)
 };
 
+// Contact message queries
+const contactMessageQueries = {
+    // Get all contact messages
+    getAllMessages: db.prepare(`
+        SELECT * FROM contact_messages 
+        ORDER BY created_at DESC
+    `),
+    
+    // Get contact message by ID
+    getMessageById: db.prepare(`
+        SELECT * FROM contact_messages 
+        WHERE id = ?
+    `),
+    
+    // Create new contact message
+    createMessage: db.prepare(`
+        INSERT INTO contact_messages (name, email, phone, subject, area, message, newsletter)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `),
+    
+    // Get messages with limited info for API (sanitized)
+    getMessagesForAPI: db.prepare(`
+        SELECT id, subject, area, created_at 
+        FROM contact_messages 
+        ORDER BY created_at DESC
+    `),
+    
+    // Delete contact message
+    deleteMessage: db.prepare(`
+        DELETE FROM contact_messages 
+        WHERE id = ?
+    `)
+};
+
 // Utility queries
 const utilityQueries = {
     // Get database statistics
@@ -154,7 +188,8 @@ const utilityQueries = {
             (SELECT COUNT(*) FROM events) as total_events,
             (SELECT COUNT(*) FROM categories) as total_categories,
             (SELECT COUNT(*) FROM events WHERE date >= DATE('now')) as upcoming_events,
-            (SELECT COUNT(*) FROM events WHERE date < DATE('now')) as past_events
+            (SELECT COUNT(*) FROM events WHERE date < DATE('now')) as past_events,
+            (SELECT COUNT(*) FROM contact_messages) as total_messages
     `),
     
     // Check if foreign key constraints are enabled
@@ -167,6 +202,7 @@ const utilityQueries = {
 module.exports = {
     categoryQueries,
     eventQueries,
+    contactMessageQueries,
     utilityQueries,
     db
 };

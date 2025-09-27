@@ -49,6 +49,11 @@
     display: block;
 }
 
+.area-icon img {
+    width: 80px;
+    height: 80px;
+} 
+
 .area-card h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
