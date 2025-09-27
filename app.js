@@ -3,7 +3,7 @@ const express = require('express');           // Web framework for Node.js
 const fs = require('fs').promises;            // File system module (with promises)
 const path = require('path');                 // Path utilities for file operations
 const app = express();                        // Create Express application
-const port = 3000;                           // Port number for server to listen on
+const port = 5000;                            // Port number for server to listen on
 
 // Define file paths for data storage (JSON files instead of database)
 const dataDir = path.join(__dirname, 'data');                    // Data directory
