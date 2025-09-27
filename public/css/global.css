@@ -48,6 +48,11 @@ body {
 .nav-logo h1 {
     color: white;
     font-size: 1.8rem;
+}
+
+.logo-link {
+    color: white;
+    text-decoration: none;
     font-weight: 700;
     letter-spacing: -0.5px;
 }
@@ -551,4 +556,13 @@ footer {
             transform: translate(-50%, 0);
         }
     }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.main-content {
+    margin-top: 80px;
+}
+
+.hidden {
+    display: none;
 }

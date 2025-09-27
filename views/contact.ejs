@@ -10,7 +10,7 @@
 <body>
     <%- include('partials/header') %>
 
-    <main style="margin-top: 80px;">
+    <main class="main-content">
         <section class="contact-section">
             <div class="container">
                 <h1 class="page-title">Contact Us</h1>
@@ -54,16 +54,16 @@
 
                     <div class="contact-form-container">
                         <h2>Send us a Message</h2>
-                        <form id="contactForm" class="contact-form" novalidate>
+                        <form id="contactForm" class="contact-form" method="POST" action="/contact" novalidate>
                             <div class="form-group">
                                 <label for="name">Full Name *</label>
-                                <input type="text" id="name" name="name" 
+                                <input type="text" id="name" name="name" required
                                        placeholder="Enter your full name">
                             </div>
                             
                             <div class="form-group">
                                 <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" 
+                                <input type="email" id="email" name="email" required
                                        placeholder="Enter your email address">
                             </div>
                             
@@ -75,7 +75,7 @@
                             
                             <div class="form-group">
                                 <label for="subject">Subject *</label>
-                                <select id="subject" name="subject">
+                                <select id="subject" name="subject" required>
                                     <option value="">Please select a subject</option>
                                     <option value="general">General Inquiry</option>
                                     <option value="event">Event Information</option>
@@ -102,7 +102,7 @@
                             
                             <div class="form-group">
                                 <label for="message">Message *</label>
-                                <textarea id="message" name="message" rows="6" 
+                                <textarea id="message" name="message" rows="6" required
                                           placeholder="Please provide details about your inquiry or feedback..."></textarea>
                             </div>
                             
@@ -116,9 +116,9 @@
                             
                             <div class="form-group checkbox-group">
                                 <label class="checkbox-label">
-                                    <input type="checkbox" id="privacy" name="privacy" value="accepted">
+                                    <input type="checkbox" id="privacy" name="privacy" value="accepted" required>
                                     <span class="checkmark"></span>
-                                    I agree to the <a href="#" target="_blank">Privacy Policy</a> and consent to the processing of my personal data *
+                                    I agree to the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a> and consent to the processing of my personal data *
                                 </label>
                             </div>
                             
@@ -128,7 +128,7 @@
                             </div>
                         </form>
                         
-                        <div id="success-message" class="success-message" style="display: none;">
+                        <div id="success-message" class="success-message hidden">
                             <div class="success-icon">✅</div>
                             <p>Thank you for your message! We'll get back to you within 24 hours.</p>
                         </div>
