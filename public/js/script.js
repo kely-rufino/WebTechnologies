@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeEventHandlers();
     initializeSearch(); // New AJAX search functionality
     initializeEventRefresh(); // New AJAX event refresh
+    initializeHeaderSearch(); // New header search functionality
 });
 
 // AJAX Search functionality
@@ -756,6 +757,104 @@ function hideLocationMessage() {
     if (existing) {
         existing.remove();
     }
+}
+
+/**
+ * Initialize header search functionality
+ */
+function initializeHeaderSearch() {
+    const searchInput = document.getElementById('header-search');
+    const searchDropdown = document.getElementById('search-results-dropdown');
+    
+    if (!searchInput || !searchDropdown) return;
+    
+    let searchTimeout;
+    
+    // Perform header search function
+    async function performHeaderSearch() {
+        const query = searchInput.value.trim();
+        
+        if (query.length < 2) {
+            searchDropdown.classList.remove('show');
+            return;
+        }
+        
+        try {
+            // Make AJAX request to query API
+            const response = await fetch(`/query?q=${encodeURIComponent(query)}`);
+            
+            if (!response.ok) {
+                throw new Error('Search request failed');
+            }
+            
+            const events = await response.json();
+            displayHeaderSearchResults(events);
+            
+        } catch (error) {
+            console.error('Header search error:', error);
+            searchDropdown.innerHTML = '<div class="no-results">Search temporarily unavailable</div>';
+            searchDropdown.classList.add('show');
+        }
+    }
+    
+    // Display search results in dropdown
+    function displayHeaderSearchResults(events) {
+        if (events.length === 0) {
+            searchDropdown.innerHTML = '<div class="no-results">No events found</div>';
+        } else {
+            const resultsHTML = events.map(event => `
+                <div class="search-result-item" onclick="navigateToEvent(${event.id})">
+                    <div class="search-result-title">${escapeHtml(event.title)}</div>
+                    <div class="search-result-description">${escapeHtml(event.description)}</div>
+                    <div class="search-result-date">${formatDate(event.date)} • ${escapeHtml(event.location)}</div>
+                </div>
+            `).join('');
+            
+            searchDropdown.innerHTML = resultsHTML;
+        }
+        
+        searchDropdown.classList.add('show');
+    }
+    
+    // Navigate to event (make it global so onclick can access it)
+    window.navigateToEvent = function(eventId) {
+        window.location.href = `/events#event-${eventId}`;
+    };
+    
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    // Event listeners
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(performHeaderSearch, 300);
+    });
+    
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+            searchDropdown.classList.remove('show');
+        }
+    });
+    
+    // Show dropdown when focusing on input (if there's content)
+    searchInput.addEventListener('focus', function() {
+        if (searchInput.value.trim().length >= 2) {
+            performHeaderSearch();
+        }
+    });
+    
+    // Handle keyboard navigation
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            searchDropdown.classList.remove('show');
+            searchInput.blur();
+        }
+    });
 }
 
 // Export functions for potential module use

@@ -234,6 +234,28 @@ app.get('/api/search', async (req, res) => {
   }
 });
 
+// Header search API endpoint - returns only events, limited to 10 results
+app.get('/query', async (req, res) => {
+  try {
+    const { q } = req.query;
+    let results = [];
+    
+    if (q && q.length > 0) {
+      // Search events using database service
+      const eventResults = DatabaseService.searchEvents(q);
+      
+      // Limit to 10 results for header dropdown
+      results = eventResults.slice(0, 10);
+    }
+    
+    res.json(results);
+    
+  } catch (error) {
+    console.error('Error in header search API:', error);
+    res.status(500).json({ error: 'Search temporarily unavailable' });
+  }
+});
+
 app.get('/api/areas', async (req, res) => {
   try {
     const areas = DatabaseService.getAllCategories();
