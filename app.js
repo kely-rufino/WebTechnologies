@@ -2,6 +2,7 @@
 const express = require('express');           // Web framework for Node.js
 const fs = require('fs').promises;            // File system module (with promises)
 const path = require('path');                 // Path utilities for file operations
+const DatabaseService = require('./database/service'); // Database service for categories and events
 const app = express();                        // Create Express application
 const port = 5000;                            // Port number for server to listen on
 
@@ -174,7 +175,25 @@ app.use(express.json());
 app.get('/', async (req, res) => {
   try {
     const events = await readJsonFile(eventsFile);
-    const communityAreas = await readJsonFile(areasFile);
+    const areas = DatabaseService.getAllCategories();
+    
+    // Get upcoming events for each category to show relevant activities
+    const communityAreas = areas.map(area => {
+      try {
+        const categoryEvents = DatabaseService.getEventsByCategory(area.id);
+        // Get only upcoming events (limit to 2 for homepage)
+        const upcomingEvents = categoryEvents
+          .filter(event => new Date(event.date) >= new Date())
+          .slice(0, 2);
+        return {
+          ...area,
+          upcomingEvents
+        };
+      } catch (error) {
+        console.error(`Error fetching events for category ${area.id}:`, error);
+        return { ...area, upcomingEvents: [] };
+      }
+    });
     
     const featuredEvent = events.find(event => event.featured);
     const upcomingEvents = events.filter(event => !event.featured).slice(0, 3);
@@ -193,9 +212,11 @@ app.get('/', async (req, res) => {
 
 app.get('/events', async (req, res) => {
   try {
-    const events = await readJsonFile(eventsFile);
+    // Get only upcoming events from database (already filtered and sorted at DB level)
+    const upcomingEvents = DatabaseService.getAllUpcomingEvents();
+    
     res.render('events', { 
-      events,
+      events: upcomingEvents,
       title: 'Events - Local Community Portal'
     });
   } catch (error) {
@@ -206,9 +227,27 @@ app.get('/events', async (req, res) => {
 
 app.get('/areas', async (req, res) => {
   try {
-    const areas = await readJsonFile(areasFile);
+    const areas = DatabaseService.getAllCategories();
+    // Get upcoming events for each category to show relevant activities
+    const areasWithEvents = areas.map(area => {
+      try {
+        const events = DatabaseService.getEventsByCategory(area.id);
+        // Get only upcoming events (limit to 3)
+        const upcomingEvents = events
+          .filter(event => new Date(event.date) >= new Date())
+          .slice(0, 3);
+        return {
+          ...area,
+          upcomingEvents
+        };
+      } catch (error) {
+        console.error(`Error fetching events for category ${area.id}:`, error);
+        return { ...area, upcomingEvents: [] };
+      }
+    });
+    
     res.render('areas', { 
-      areas,
+      areas: areasWithEvents,
       title: 'Community Areas - Local Community Portal'
     });
   } catch (error) {
@@ -330,7 +369,7 @@ app.get('/api/search', async (req, res) => {
 
 app.get('/api/areas', async (req, res) => {
   try {
-    const areas = await readJsonFile(areasFile);
+    const areas = DatabaseService.getAllCategories();
     res.json(areas);
   } catch (error) {
     console.error('Error loading areas API:', error);

@@ -20,20 +20,26 @@
                 <div class="areas-grid">
                     <% areas.forEach(area => { %>
                     <div class="area-card">
-                        <div class="area-icon"><%= area.icon %></div>
+                        <div class="area-icon">
+                            <% if (area.image_url) { %>
+                                <img src="<%= area.image_url %>" alt="<%= area.name %>" />
+                            <% } else { %>
+                                📍
+                            <% } %>
+                        </div>
                         <h3><%= area.name %></h3>
                         <p><%= area.description %></p>
                         
+                        <% if (area.upcomingEvents && area.upcomingEvents.length > 0) { %>
                         <div class="area-activities">
-                            <h4>Available Activities:</h4>
+                            <h4>Upcoming Activities:</h4>
                             <ul>
-                                <% if (area.activities) { %>
-                                    <% area.activities.forEach(activity => { %>
-                                    <li><%= activity %></li>
-                                    <% }) %>
-                                <% } %>
+                                <% area.upcomingEvents.forEach(event => { %>
+                                <li><%= event.title %> - <%= new Date(event.date).toLocaleDateString() %></li>
+                                <% }) %>
                             </ul>
                         </div>
+                        <% } %>
                         
                         <div class="area-actions">
                             <button class="btn-primary">Get Involved</button>

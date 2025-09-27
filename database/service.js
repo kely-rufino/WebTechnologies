@@ -71,6 +71,15 @@ class DatabaseService {
         }
     }
 
+    static getAllUpcomingEvents() {
+        try {
+            return eventQueries.getAllUpcomingEvents.all();
+        } catch (error) {
+            console.error('Error fetching all upcoming events:', error);
+            throw new Error('Failed to fetch all upcoming events');
+        }
+    }
+
     static searchEvents(searchTerm) {
         try {
             const likePattern = `%${searchTerm}%`;

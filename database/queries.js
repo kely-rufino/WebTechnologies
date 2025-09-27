@@ -79,6 +79,15 @@ const eventQueries = {
         LIMIT ?
     `),
     
+    // Get all upcoming events (no limit)
+    getAllUpcomingEvents: db.prepare(`
+        SELECT e.*, c.name as category_name
+        FROM events e
+        LEFT JOIN categories c ON e.category_id = c.id
+        WHERE e.date >= DATE('now')
+        ORDER BY e.date ASC, e.start_time ASC
+    `),
+    
     // Search events by title or description
     searchEvents: db.prepare(`
         SELECT e.*, c.name as category_name
