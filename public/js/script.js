@@ -376,7 +376,7 @@ function initializeFAQ() {
                     item.classList.toggle('active');
                     
                     if (!isActive) {
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        answer.style.maxHeight = answer.scrollHeight + 60 + 'px';
                         if (toggle) toggle.textContent = '−';
                     } else {
                         answer.style.maxHeight = '0';

@@ -21,6 +21,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Middleware to make categories available to all views (for footer)
+app.use((req, res, next) => {
+  try {
+    const categories = DatabaseService.getAllCategories();
+    res.locals.footerCategories = categories;
+  } catch (error) {
+    console.error('Error fetching categories for footer:', error);
+    res.locals.footerCategories = [];
+  }
+  next();
+});
+
 // Routes
 app.get('/', async (req, res) => {
   try {
