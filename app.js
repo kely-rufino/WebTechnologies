@@ -21,6 +21,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Debug middleware to log all requests
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path} - Content-Type: ${req.headers['content-type']}`);
+  next();
+});
+
 // Middleware to make categories available to all views (for footer)
 app.use((req, res, next) => {
   try {
@@ -169,6 +175,74 @@ app.post('/contact', async (req, res) => {
   } catch (error) {
     console.error('Error saving contact message:', error);
     res.status(500).json({ success: false, message: 'There was an error sending your message. Please try again.' });
+  }
+});
+
+// New route for AJAX form submission
+app.post('/messages', async (req, res) => {
+  console.log('Request received at /messages');
+  console.log('Request headers:', req.headers);
+  console.log('Request body:', req.body);
+  console.log('Request body type:', typeof req.body);
+  
+  if (!req.body) {
+    console.error('req.body is undefined');
+    return res.status(400).json({ success: false, message: 'No data received' });
+  }
+  
+  const { name, email, phone, subject, area, message, newsletter, privacy } = req.body;
+  
+  // Server-side validation
+  const errors = {};
+  
+  if (!name || name.trim() === '') {
+    errors.name = 'Full name is required';
+  }
+  
+  if (!email || email.trim() === '') {
+    errors.email = 'Email address is required';
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.email = 'Please enter a valid email address';
+  }
+  
+  if (!subject || subject === '') {
+    errors.subject = 'Subject is required';
+  }
+  
+  if (!message || message.trim() === '') {
+    errors.message = 'Message is required';
+  }
+  
+  if (!privacy) {
+    errors.privacy = 'You must accept the privacy policy';
+  }
+  
+  // If there are validation errors, return them
+  if (Object.keys(errors).length > 0) {
+    return res.status(400).json({ success: false, errors });
+  }
+  
+  try {
+    const newMessage = DatabaseService.createContactMessage({
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone || null,
+      subject,
+      area: area || null,
+      message: message.trim(),
+      newsletter: newsletter ? true : false
+    });
+    
+    res.json({ 
+      success: true, 
+      message: 'Thank you for your message! We\'ll get back to you within 24 hours.' 
+    });
+  } catch (error) {
+    console.error('Error saving contact message:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'There was an error sending your message. Please try again.' 
+    });
   }
 });
 

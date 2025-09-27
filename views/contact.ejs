@@ -54,16 +54,16 @@
 
                     <div class="contact-form-container">
                         <h2>Send us a Message</h2>
-                        <form id="contactForm" class="contact-form" method="POST" action="/contact">
+                        <form id="contactForm" class="contact-form" novalidate>
                             <div class="form-group">
                                 <label for="name">Full Name *</label>
-                                <input type="text" id="name" name="name" required 
+                                <input type="text" id="name" name="name" 
                                        placeholder="Enter your full name">
                             </div>
                             
                             <div class="form-group">
                                 <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required 
+                                <input type="email" id="email" name="email" 
                                        placeholder="Enter your email address">
                             </div>
                             
@@ -75,7 +75,7 @@
                             
                             <div class="form-group">
                                 <label for="subject">Subject *</label>
-                                <select id="subject" name="subject" required>
+                                <select id="subject" name="subject">
                                     <option value="">Please select a subject</option>
                                     <option value="general">General Inquiry</option>
                                     <option value="event">Event Information</option>
@@ -102,7 +102,7 @@
                             
                             <div class="form-group">
                                 <label for="message">Message *</label>
-                                <textarea id="message" name="message" rows="6" required 
+                                <textarea id="message" name="message" rows="6" 
                                           placeholder="Please provide details about your inquiry or feedback..."></textarea>
                             </div>
                             
@@ -116,7 +116,7 @@
                             
                             <div class="form-group checkbox-group">
                                 <label class="checkbox-label">
-                                    <input type="checkbox" id="privacy" name="privacy" required value="accepted">
+                                    <input type="checkbox" id="privacy" name="privacy" value="accepted">
                                     <span class="checkmark"></span>
                                     I agree to the <a href="#" target="_blank">Privacy Policy</a> and consent to the processing of my personal data *
                                 </label>
@@ -128,7 +128,10 @@
                             </div>
                         </form>
                         
-                        <div id="form-status" class="form-status"></div>
+                        <div id="success-message" class="success-message" style="display: none;">
+                            <div class="success-icon">✅</div>
+                            <p>Thank you for your message! We'll get back to you within 24 hours.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -168,40 +171,210 @@
 
     <script src="/js/script.js"></script>
     <script>
-        // Enhanced contact form handling for EJS template
+        // Enhanced contact form handling with validation
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, looking for contact form...');
             const contactForm = document.getElementById('contactForm');
+            console.log('Contact form found:', contactForm);
+            
             if (contactForm) {
+                console.log('Contact form validation initialized');
+                
+                // Function to clear field errors
+                function clearFieldError(field) {
+                    field.classList.remove('error');
+                    // Clear the forced styles
+                    field.style.borderColor = '';
+                    field.style.boxShadow = '';
+                }
+                
+                // Function to show field error
+                function showFieldError(field) {
+                    field.classList.add('error');
+                    // Force the style update
+                    field.style.borderColor = '#e74c3c';
+                    field.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.1)';
+                }
+                
+                // Function to validate required fields
+                function validateForm() {
+                    console.log('Starting validation...');
+                    
+                    // Get all required field elements
+                    const nameField = document.getElementById('name');
+                    const emailField = document.getElementById('email');
+                    const subjectField = document.getElementById('subject');
+                    const messageField = document.getElementById('message');
+                    const privacyField = document.getElementById('privacy');
+                    
+                    const requiredFields = [
+                        { field: nameField, name: 'name' },
+                        { field: emailField, name: 'email' },
+                        { field: subjectField, name: 'subject' },
+                        { field: messageField, name: 'message' },
+                        { field: privacyField, name: 'privacy' }
+                    ];
+                    
+                    let isValid = true;
+                    const errors = {};
+                    
+                    // Clear ALL previous errors first
+                    requiredFields.forEach(item => {
+                        if (item.field) {
+                            clearFieldError(item.field);
+                        }
+                    });
+                    
+                    // Now validate and ONLY add errors to fields that are actually missing
+                    requiredFields.forEach(item => {
+                        const field = item.field;
+                        const name = item.name;
+                        
+                        if (!field) {
+                            console.error(`Field not found: ${name}`);
+                            return;
+                        }
+                        
+                        let hasError = false;
+                        
+                        if (name === 'privacy') {
+                            if (!field.checked) {
+                                hasError = true;
+                                errors[name] = 'You must accept the privacy policy';
+                            }
+                        } else if (name === 'email') {
+                            const value = field.value.trim();
+                            if (!value) {
+                                hasError = true;
+                                errors[name] = 'Email address is required';
+                            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                                hasError = true;
+                                errors[name] = 'Please enter a valid email address';
+                            }
+                        } else if (name === 'subject') {
+                            if (!field.value || field.value === '') {
+                                hasError = true;
+                                errors[name] = 'Subject is required';
+                            }
+                        } else {
+                            if (!field.value || field.value.trim() === '') {
+                                hasError = true;
+                                errors[name] = `${name.charAt(0).toUpperCase() + name.slice(1)} is required`;
+                            }
+                        }
+                        
+                        // Only show error border if this field has an error
+                        if (hasError) {
+                            console.log(`Field ${name} has error, showing red border`);
+                            showFieldError(field);
+                            isValid = false;
+                        } else {
+                            console.log(`Field ${name} is valid`);
+                        }
+                    });
+                    
+                    console.log('Validation complete. Is valid:', isValid, 'Errors:', errors);
+                    return { isValid, errors };
+                }
+                
+                // Add event listeners to clear errors when user starts typing
+                const fields = ['name', 'email', 'subject', 'message', 'privacy'];
+                fields.forEach(fieldName => {
+                    const field = document.getElementById(fieldName);
+                    if (field) {
+                        if (fieldName === 'privacy') {
+                            field.addEventListener('change', () => {
+                                clearFieldError(field);
+                                // Hide success message when user starts interacting again
+                                const successMessage = document.getElementById('success-message');
+                                if (successMessage) {
+                                    successMessage.style.display = 'none';
+                                }
+                            });
+                        } else {
+                            field.addEventListener('input', () => {
+                                clearFieldError(field);
+                                // Hide success message when user starts typing again
+                                const successMessage = document.getElementById('success-message');
+                                if (successMessage) {
+                                    successMessage.style.display = 'none';
+                                }
+                            });
+                        }
+                    }
+                });
+                
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
+                    console.log('Form submitted, validating...');
                     
+                    // Validate form
+                    const validation = validateForm();
+                    console.log('Validation result:', validation);
+                    
+                    if (!validation.isValid) {
+                        console.log('Form invalid, showing field errors');
+                        return;
+                    }
+                    
+                    // Prepare form data as JSON
                     const formData = new FormData(contactForm);
+                    const jsonData = {};
+                    for (let [key, value] of formData.entries()) {
+                        jsonData[key] = value;
+                    }
+                    
+                    console.log('Form data being sent:', jsonData);
+                    
                     const submitButton = contactForm.querySelector('button[type="submit"]');
                     const originalText = submitButton.textContent;
                     
+                    // Update button state
                     submitButton.textContent = 'Sending...';
                     submitButton.disabled = true;
                     
-                    fetch('/contact', {
+                    // No form status messages needed
+                    
+                    // Send AJAX request
+                    fetch('/messages', {
                         method: 'POST',
-                        body: formData
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(jsonData)
                     })
                     .then(response => response.json())
                     .then(data => {
-                        const formStatus = document.getElementById('form-status');
                         if (data.success) {
-                            formStatus.textContent = data.message;
-                            formStatus.className = 'form-status success';
+                            // Success - reset form and clear field errors
                             contactForm.reset();
+                            const allFields = contactForm.querySelectorAll('input, select, textarea');
+                            allFields.forEach(field => clearFieldError(field));
+                            
+                            // Show success message
+                            const successMessage = document.getElementById('success-message');
+                            successMessage.style.display = 'flex';
+                            
+                            // Hide success message after 5 seconds
+                            setTimeout(() => {
+                                successMessage.style.display = 'none';
+                            }, 5000);
+                            
                         } else {
-                            formStatus.textContent = data.message;
-                            formStatus.className = 'form-status error';
+                            // Handle server validation errors - only show field errors
+                            if (data.errors) {
+                                Object.keys(data.errors).forEach(fieldName => {
+                                    const field = document.getElementById(fieldName);
+                                    if (field) {
+                                        showFieldError(field);
+                                    }
+                                });
+                            }
                         }
                     })
                     .catch(error => {
-                        const formStatus = document.getElementById('form-status');
-                        formStatus.textContent = 'There was an error sending your message. Please try again.';
-                        formStatus.className = 'form-status error';
+                        console.error('Form submission error:', error);
+                        // Silent error handling - no user message shown
                     })
                     .finally(() => {
                         submitButton.textContent = originalText;

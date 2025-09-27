@@ -70,9 +70,12 @@
 .contact-form label {
     display: block;
     margin-bottom: 0.5rem;
-    font-weight: 600;
     color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
+
+/* Required field styling removed - handled by JavaScript validation */
 
 .contact-form input,
 .contact-form select,
@@ -97,8 +100,14 @@
 .contact-form input.error,
 .contact-form select.error,
 .contact-form textarea.error {
-    border-color: #e74c3c;
-    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1) !important;
+}
+
+/* Error state for checkboxes */
+.contact-form input[type="checkbox"].error {
+    outline: 2px solid #e74c3c !important;
+    outline-offset: 2px;
 }
 
 .contact-form textarea {
@@ -139,6 +148,13 @@
     border-radius: 6px;
     font-weight: 600;
     text-align: center;
+    min-height: 20px;
+    transition: all 0.3s ease;
+}
+
+.form-status:empty {
+    padding: 0;
+    margin: 0;
 }
 
 .form-status.success {
@@ -151,6 +167,41 @@
     background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+}
+
+/* Success message styling */
+.success-message {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+.success-message .success-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.success-message p {
+    margin: 0;
+    font-weight: 600;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .additional-info {
