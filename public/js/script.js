@@ -560,37 +560,37 @@ function initializeEventHandlers() {
             }
         });
     }
+
     
-    // Area buttons - could be expanded to show detailed views
-    document.querySelectorAll('.area-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const areaCard = this.closest('.area-card');
-            const areaTitle = areaCard.querySelector('h3').textContent;
+    // Event action buttons - Get Directions
+    const getDirectionsButtons = document.querySelectorAll('.get-directions-btn');
+    console.log('Found Get Directions buttons:', getDirectionsButtons.length);
+    
+    getDirectionsButtons.forEach((button, index) => {
+        console.log(`Setting up button ${index}:`, button);
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Get Directions button clicked!');
             
-            // For now, just show an alert. In a full application, this would
-            // navigate to a detailed page or show a modal with more information
-            alert(`More information about ${areaTitle} coming soon!\n\nYou can contact us through the contact form to learn more about specific programs and activities in this area.`);
+            const eventAddress = this.getAttribute('data-address');
+            const eventName = this.getAttribute('data-event-name');
+            
+            console.log('Event address:', eventAddress);
+            console.log('Event name:', eventName);
+            
+            if (eventAddress) {
+                getDirectionsToEvent(eventAddress, eventName);
+            } else {
+                alert('Address not available for this event.');
+            }
         });
     });
     
-    // Event action buttons
+    // Event action buttons - View Schedule
     document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
-        if (button.textContent.includes('Get Directions')) {
-            button.addEventListener('click', function() {
-                // In a real application, this would integrate with maps
-                alert('Directions to Central Community Park:\n\n123 Community Street, Your City\nParking available on-site.\nPublic transportation: Bus routes 15, 22, and 34 stop nearby.');
-            });
-        }
-        
         if (button.textContent.includes('View Schedule')) {
             button.addEventListener('click', function() {
                 alert('Community Fair Schedule:\n\n10:00 AM - Opening Ceremony\n11:00 AM - Local Vendors Open\n12:00 PM - Live Music Begins\n1:00 PM - Kids Activities Start\n3:00 PM - Community Awards\n5:00 PM - Food Trucks Arrive\n7:00 PM - Evening Entertainment\n8:00 PM - Closing Ceremony');
-            });
-        }
-        
-        if (button.textContent.includes('View All Events')) {
-            button.addEventListener('click', function() {
-                alert('Full events calendar coming soon!\n\nFor now, check our featured events above or contact us for more information about upcoming activities.');
             });
         }
     });
@@ -631,6 +631,133 @@ function validateEmail(email) {
     return emailRegex.test(email);
 }
 
+/**
+ * Opens Google Maps with directions from user's current location to event address
+ * @param {string} eventAddress - The destination address
+ * @param {string} eventName - The name of the event (for display)
+ */
+function getDirectionsToEvent(eventAddress, eventName) {
+    console.log('getDirectionsToEvent called with:', eventAddress, eventName);
+    
+    // Check if geolocation is supported
+    if (navigator.geolocation) {
+        // Show loading message
+        const loadingMessage = `Getting your location to provide directions to ${eventName}...`;
+        
+        // Create a temporary notification
+        showLocationMessage(loadingMessage, 'info');
+        
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                // Success - got user's location
+                const userLat = position.coords.latitude;
+                const userLng = position.coords.longitude;
+                
+                // Create Google Maps URL with directions from current location to event
+                const mapsUrl = `https://www.google.com/maps/dir/${userLat},${userLng}/${encodeURIComponent(eventAddress)}`;
+                
+                // Open in new tab
+                window.open(mapsUrl, '_blank');
+                
+                // Remove loading message
+                hideLocationMessage();
+            },
+            function(error) {
+                // Error getting location - fall back to directions without origin
+                console.warn('Geolocation error:', error);
+                hideLocationMessage();
+                
+                let errorMessage = '';
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        errorMessage = 'Location access denied. Opening directions from general area.';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errorMessage = 'Location information unavailable. Opening directions from general area.';
+                        break;
+                    case error.TIMEOUT:
+                        errorMessage = 'Location request timed out. Opening directions from general area.';
+                        break;
+                    default:
+                        errorMessage = 'Unable to get your location. Opening directions from general area.';
+                        break;
+                }
+                
+                showLocationMessage(errorMessage, 'warning');
+                
+                // Fall back to just the destination address
+                const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(eventAddress)}`;
+                window.open(mapsUrl, '_blank');
+                
+                // Hide message after 3 seconds
+                setTimeout(hideLocationMessage, 3000);
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000, // 10 seconds
+                maximumAge: 300000 // 5 minutes
+            }
+        );
+    } else {
+        // Geolocation not supported - just open the destination
+        showLocationMessage('Geolocation not supported. Opening event location.', 'warning');
+        const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(eventAddress)}`;
+        window.open(mapsUrl, '_blank');
+        
+        setTimeout(hideLocationMessage, 3000);
+    }
+}
+
+/**
+ * Shows a temporary message to the user about location services
+ * @param {string} message - The message to display
+ * @param {string} type - The type of message ('info', 'warning', 'error')
+ */
+function showLocationMessage(message, type = 'info') {
+    // Remove any existing message
+    hideLocationMessage();
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.id = 'location-message';
+    messageDiv.className = `location-message ${type}`;
+    messageDiv.innerHTML = `
+        <div class="message-content">
+            <span class="message-icon">${type === 'info' ? '📍' : type === 'warning' ? '⚠️' : '❌'}</span>
+            <span class="message-text">${message}</span>
+        </div>
+    `;
+    
+    // Add styles
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: ${type === 'info' ? '#4CAF50' : type === 'warning' ? '#FF9800' : '#F44336'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        font-size: 14px;
+        max-width: 400px;
+        text-align: center;
+        animation: slideInFromTop 0.3s ease-out;
+    `;
+    
+    document.body.appendChild(messageDiv);
+}
+
+/**
+ * Hides the location message
+ */
+function hideLocationMessage() {
+    const existing = document.getElementById('location-message');
+    if (existing) {
+        existing.remove();
+    }
+}
+
 // Export functions for potential module use
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
@@ -638,6 +765,9 @@ if (typeof module !== 'undefined' && module.exports) {
         initializeFAQ,
         initializeContactForm,
         validateEmail,
-        formatDate
+        formatDate,
+        getDirectionsToEvent,
+        showLocationMessage,
+        hideLocationMessage
     };
 }

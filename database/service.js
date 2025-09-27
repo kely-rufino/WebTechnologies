@@ -89,6 +89,15 @@ class DatabaseService {
         }
     }
 
+    static getFeaturedEvents() {
+        try {
+            return eventQueries.getFeaturedEvents.all();
+        } catch (error) {
+            console.error('Error fetching featured events:', error);
+            throw new Error('Failed to fetch featured events');
+        }
+    }
+
     static searchEvents(searchTerm) {
         try {
             const likePattern = `%${searchTerm}%`;

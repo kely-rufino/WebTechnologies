@@ -62,16 +62,7 @@
     box-shadow: 0 20px 40px rgba(255,107,107,0.2);
 }
 
-.event-highlight::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
-    animation: float 6s ease-in-out infinite;
-}
+
 
 @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -143,6 +134,36 @@
     background: white;
     color: #ff6b6b;
     transform: translateY(-2px);
+}
+
+/* Grid layout for multiple featured events */
+.featured-events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.featured-events-grid .event-highlight {
+    margin-bottom: 0;
+}
+
+/* Ensure featured events section has proper spacing */
+.featured-event .section-title,
+.featured-event .section-subtitle {
+    text-align: center;
+    color: #333;
+}
+
+.featured-event .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.featured-event .section-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.7;
+    margin-bottom: 2rem;
 }
 
 /* ===== COMMUNITY AREAS SECTION ===== */

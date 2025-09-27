@@ -38,6 +38,7 @@ const createEventsTable = `
         end_time TIME,
         address TEXT,
         category_id INTEGER,
+        is_featured BOOLEAN DEFAULT FALSE,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
@@ -66,6 +67,18 @@ try {
     
     db.exec(createEventsTable);
     console.log('✓ Events table created/verified');
+    
+    // Add is_featured column if it doesn't exist
+    try {
+        db.exec('ALTER TABLE events ADD COLUMN is_featured BOOLEAN DEFAULT FALSE');
+        console.log('✓ Added is_featured column to events table');
+    } catch (error) {
+        if (error.code === 'SQLITE_ERROR' && error.message.includes('duplicate column name')) {
+            console.log('✓ is_featured column already exists');
+        } else {
+            throw error;
+        }
+    }
     
     db.exec(createContactMessagesTable);
     console.log('✓ Contact messages table created/verified');

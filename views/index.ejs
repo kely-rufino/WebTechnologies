@@ -24,35 +24,53 @@
         </div>
     </section>
 
-    <!-- Featured Live Event -->
-    <% if (featuredEvent) { %>
+    <!-- Featured Events Section -->
+    <% if (featuredEvents && featuredEvents.length > 0) { %>
     <section class="featured-event">
         <div class="container">
-            <div class="event-highlight">
-                <div class="event-badge">
-                    <span>FEATURED EVENT</span>
-                </div>
-                <div class="event-content">
-                    <h2>🎪 <%= featuredEvent.title %></h2>
-                    <div class="event-details">
-                        <div class="event-date">
-                            <strong>Date:</strong> <%= featuredEvent.date %>
+            <h2 class="section-title">Featured Events</h2>
+            <p class="section-subtitle">Don't miss these highlighted community events</p>
+            
+            <div class="featured-events-grid">
+                <% featuredEvents.forEach(event => { %>
+                <div class="event-highlight">
+                    <div class="event-badge">
+                        <span>FEATURED</span>
+                    </div>
+                    <div class="event-content">
+                        <h2>🎪 <%= event.title %></h2>
+                        <div class="event-details">
+                            <div class="event-date">
+                                <strong>Date:</strong> <%= new Date(event.date).toLocaleDateString('en-GB', { 
+                                    weekday: 'long', 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                }) %>
+                            </div>
+                            <div class="event-time">
+                                <strong>Time:</strong> <%= event.start_time %><% if (event.end_time) { %> - <%= event.end_time %><% } %>
+                            </div>
+                            <div class="event-location">
+                                <strong>Location:</strong> <%= event.location %>
+                            </div>
+                            <% if (event.category_name) { %>
+                            <div class="event-category">
+                                <strong>Category:</strong> <%= event.category_name %>
+                            </div>
+                            <% } %>
                         </div>
-                        <div class="event-time">
-                            <strong>Time:</strong> <%= featuredEvent.time %>
-                        </div>
-                        <div class="event-location">
-                            <strong>Location:</strong> <%= featuredEvent.location %>
+                        <p class="event-description">
+                            <%= event.description %>
+                        </p>
+                        <div class="event-actions">
+                            <button class="btn-primary get-directions-btn" 
+                                    data-address="<%= event.address %>" 
+                                    data-event-name="<%= event.title %>">Get Directions</button>
                         </div>
                     </div>
-                    <p class="event-description">
-                        <%= featuredEvent.description %>
-                    </p>
-                    <div class="event-actions">
-                        <button class="btn-primary">Get Directions</button>
-                        <button class="btn-secondary">View Schedule</button>
-                    </div>
                 </div>
+                <% }) %>
             </div>
         </div>
     </section>
@@ -82,10 +100,6 @@
         <div class="container">
             <div class="events-header">
                 <h2 class="section-title">Upcoming Events</h2>
-                <button id="refreshEvents" class="refresh-button">
-                    <span class="refresh-icon">🔄</span>
-                    Refresh Events
-                </button>
             </div>
             <div id="eventsGrid" class="events-grid">
                 <% upcomingEvents.forEach(event => { %>
@@ -101,8 +115,9 @@
                     </div>
                     <div class="event-info">
                         <h3><%= event.title %></h3>
-                        <p class="event-time"><%= event.time %></p>
+                        <p class="event-time"><%= event.start_time %><% if (event.end_time) { %> - <%= event.end_time %><% } %></p>
                         <p class="event-location"><%= event.location %></p>
+                        <% if (event.category_name) { %><p class="event-category"><%= event.category_name %></p><% } %>
                         <p><%= event.description %></p>
                     </div>
                 </div>
@@ -114,66 +129,6 @@
             </div>
             <div class="view-all-events">
                 <a href="/events"><button class="btn-secondary">View All Events</button></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Search Section -->
-    <section class="search-section">
-        <div class="container">
-            <h2 class="section-title">Search Events & Activities</h2>
-            <div class="search-container">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search for events, activities, or community areas..." autocomplete="off">
-                    <button id="searchBtn" class="search-button">Search</button>
-                </div>
-                <div class="search-filters">
-                    <select id="categoryFilter">
-                        <option value="">All Categories</option>
-                        <option value="community">Community Events</option>
-                        <option value="entertainment">Entertainment</option>
-                        <option value="education">Education</option>
-                        <option value="health">Health & Wellness</option>
-                        <option value="sports">Sports & Recreation</option>
-                        <option value="arts">Arts & Culture</option>
-                        <option value="shopsafe">Shop Safe, Shop Local</option>
-                    </select>
-                    <button id="clearSearch" class="clear-button">Clear</button>
-                </div>
-            </div>
-            <div id="searchResults" class="search-results"></div>
-            <div id="searchLoading" class="search-loading" style="display: none;">
-                <div class="loading-spinner"></div>
-                <p>Searching...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Links Section -->
-    <section class="quick-links">
-        <div class="container">
-            <h2 class="section-title">Quick Access</h2>
-            <div class="links-grid">
-                <a href="#" class="quick-link-card">
-                    <div class="link-icon">📋</div>
-                    <h3>Event Registration</h3>
-                    <p>Sign up for community events</p>
-                </a>
-                <a href="/events" class="quick-link-card">
-                    <div class="link-icon">📅</div>
-                    <h3>Community Calendar</h3>
-                    <p>View full event calendar</p>
-                </a>
-                <a href="#" class="quick-link-card">
-                    <div class="link-icon">💬</div>
-                    <h3>Discussion Board</h3>
-                    <p>Community discussions</p>
-                </a>
-                <a href="/contact" class="quick-link-card">
-                    <div class="link-icon">📞</div>
-                    <h3>Get Involved</h3>
-                    <p>Contact us to participate</p>
-                </a>
             </div>
         </div>
     </section>

@@ -390,6 +390,32 @@ footer {
     }
 }
 
+/* ===== LOCATION MESSAGE STYLES ===== */
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.location-message .message-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.location-message .message-icon {
+    font-size: 18px;
+}
+
+.location-message .message-text {
+    flex: 1;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -399,5 +425,12 @@ footer {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+    
+    @keyframes slideInFromTop {
+        from, to {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
     }
 }

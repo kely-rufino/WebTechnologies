@@ -127,6 +127,7 @@
     display: flex;
     gap: 0.5rem;
     margin-top: 1rem;
+    flex-direction: column;
 }
 
 .no-events {
@@ -251,11 +252,17 @@
     }
 
     .event-card {
+        display: flex;
         flex-direction: column;
         text-align: center;
     }
+
+    .event-card-content {
+        display: flex;
+    }   
     
     .event-actions {
+        display: flex;
         flex-direction: column;
     }
 }

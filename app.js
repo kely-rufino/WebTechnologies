@@ -25,6 +25,7 @@ app.use(express.json());
 app.get('/', async (req, res) => {
   try {
     const allEvents = DatabaseService.getAllUpcomingEvents();
+    const featuredEvents = DatabaseService.getFeaturedEvents();
     const areas = DatabaseService.getAllCategories();
     
     // Get upcoming events for each category to show relevant activities
@@ -43,12 +44,12 @@ app.get('/', async (req, res) => {
       }
     });
     
-    // For now, use first event as featured - you can add a featured field to database later
-    const featuredEvent = allEvents.length > 0 ? allEvents[0] : null;
-    const upcomingEvents = allEvents.slice(1, 4); // Skip the featured event, take next 3
+    // Pass all featured events to the template
+    // For upcoming events, show regular events (limit to 6 for homepage)
+    const upcomingEvents = allEvents.slice(0, 6);
     
     res.render('index', { 
-      featuredEvent, 
+      featuredEvents, 
       upcomingEvents, 
       communityAreas,
       title: 'Local Community Portal - Your Gateway to Community Life'

@@ -16,7 +16,8 @@ try {
             start_time: '09:00',
             end_time: '12:00',
             address: '1 Western Gateway, Royal Victoria Dock, London E16 1XL',
-            category_id: 1
+            category_id: 1,
+            is_featured: true
         },
         {
             title: 'Morning Yoga Classes',
@@ -28,7 +29,8 @@ try {
             start_time: '07:00',
             end_time: '08:00',
             address: '45 Stratford High Street, Stratford, London E15 2QF',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Tennis Tournament Championship',
@@ -40,7 +42,8 @@ try {
             start_time: '08:00',
             end_time: '17:00',
             address: 'The Westfield Shopping Centre, Montfichet Road, London E20 1EJ',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Swimming Lessons for Beginners',
@@ -52,7 +55,8 @@ try {
             start_time: '10:00',
             end_time: '11:30',
             address: '154 Burford Road, Stratford, London E15 2SP',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Cycling Group Weekend Ride',
@@ -64,7 +68,8 @@ try {
             start_time: '08:30',
             end_time: '11:00',
             address: 'Queen Elizabeth Olympic Park, Stratford, London E20 2ST',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Basketball Skills Clinic',
@@ -76,7 +81,8 @@ try {
             start_time: '14:00',
             end_time: '16:00',
             address: '1 Western Gateway, Royal Victoria Dock, London E16 1XL',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Senior Fitness Walking Group',
@@ -88,7 +94,8 @@ try {
             start_time: '09:00',
             end_time: '10:30',
             address: '789 Community Way, Main Entrance',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Youth Martial Arts Workshop',
@@ -100,7 +107,8 @@ try {
             start_time: '15:30',
             end_time: '17:00',
             address: '789 Community Way, Main Gymnasium',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Softball League Season Opener',
@@ -112,7 +120,8 @@ try {
             start_time: '10:00',
             end_time: '16:00',
             address: 'Stratford Shopping Centre, Athletic Complex',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Badminton Club Weekly Session',
@@ -124,7 +133,8 @@ try {
             start_time: '19:00',
             end_time: '21:00',
             address: '100 Excel Centre Drive, Multi-Purpose Hall',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Family Fun Run 5K',
@@ -136,7 +146,8 @@ try {
             start_time: '08:00',
             end_time: '11:00',
             address: 'Central Park Main Entrance, Running Trail Start',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Aqua Aerobics Classes',
@@ -148,7 +159,8 @@ try {
             start_time: '10:00',
             end_time: '11:00',
             address: '456 Aquatic Drive, Community Pool',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Golf Putting Competition',
@@ -160,7 +172,8 @@ try {
             start_time: '13:00',
             end_time: '16:00',
             address: 'Stratford Shopping Centre, Mini Golf Course',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Dance Fitness Workshop',
@@ -172,7 +185,8 @@ try {
             start_time: '18:00',
             end_time: '19:30',
             address: '789 Community Way, Dance Studio',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Table Tennis Tournament',
@@ -184,7 +198,8 @@ try {
             start_time: '12:00',
             end_time: '17:00',
             address: '100 Excel Centre Drive, Recreation Room',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Outdoor Boot Camp Challenge',
@@ -196,7 +211,8 @@ try {
             start_time: '07:00',
             end_time: '08:00',
             address: 'Central Park, Fitness Equipment Area',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Rock Climbing Introduction',
@@ -208,7 +224,8 @@ try {
             start_time: '15:00',
             end_time: '17:00',
             address: '321 Adventure Way, Climbing Wall Facility',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Volleyball League Playoffs',
@@ -220,7 +237,8 @@ try {
             start_time: '18:00',
             end_time: '21:00',
             address: '100 Excel Centre Drive, Volleyball Complex',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Pilates Workshop',
@@ -232,7 +250,8 @@ try {
             start_time: '11:00',
             end_time: '12:30',
             address: '789 Community Way, Wellness Center',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
         {
             title: 'Winter Sports Preparation Clinic',
@@ -244,7 +263,8 @@ try {
             start_time: '16:00',
             end_time: '18:00',
             address: '100 Excel Centre Drive, Training Facility',
-            category_id: 1
+            category_id: 1,
+            is_featured: false
         },
 
         // Health & Wellness (Category 2) - 20 events
@@ -258,7 +278,8 @@ try {
             start_time: '09:00',
             end_time: '15:00',
             address: '789 Community Way, Main Hall',
-            category_id: 2
+            category_id: 2,
+            is_featured: true
         },
         {
             title: 'Mental Health Support Group',
@@ -270,7 +291,8 @@ try {
             start_time: '18:30',
             end_time: '20:00',
             address: '789 Community Way, Room 105',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Nutrition Workshop: Healthy Eating on a Budget',
@@ -282,7 +304,8 @@ try {
             start_time: '14:00',
             end_time: '16:00',
             address: '789 Community Way, Teaching Kitchen',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Senior Health and Fitness Assessment',
@@ -294,7 +317,8 @@ try {
             start_time: '10:00',
             end_time: '14:00',
             address: '100 Excel Centre Drive, Health Assessment Center',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Stress Management Workshop',
@@ -306,7 +330,8 @@ try {
             start_time: '19:00',
             end_time: '21:00',
             address: '789 Community Way, Wellness Center',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Flu Shot Clinic',
@@ -318,7 +343,8 @@ try {
             start_time: '12:00',
             end_time: '18:00',
             address: 'Stratford Shopping Centre, Medical Wing',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Meditation and Mindfulness Session',
@@ -330,7 +356,8 @@ try {
             start_time: '17:30',
             end_time: '18:30',
             address: '789 Community Way, Meditation Room',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Heart Health Education Seminar',
@@ -342,7 +369,8 @@ try {
             start_time: '19:00',
             end_time: '20:30',
             address: '100 Excel Centre Drive, Conference Hall A',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Healthy Cooking Demonstration',
@@ -354,7 +382,8 @@ try {
             start_time: '15:00',
             end_time: '17:00',
             address: '789 Community Way, Culinary Center',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Sleep Hygiene Workshop',
@@ -366,7 +395,8 @@ try {
             start_time: '18:00',
             end_time: '19:30',
             address: '789 Community Way, Education Wing Room B',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Diabetes Management Support Group',
@@ -378,7 +408,8 @@ try {
             start_time: '14:00',
             end_time: '15:30',
             address: 'Stratford Shopping Centre, Health Center Room 3',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Women\'s Health Information Session',
@@ -390,7 +421,8 @@ try {
             start_time: '19:00',
             end_time: '20:30',
             address: '100 Excel Centre Drive, Private Meeting Room',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'First Aid and CPR Training',
@@ -402,7 +434,8 @@ try {
             start_time: '09:00',
             end_time: '16:00',
             address: '789 Community Way, Training Facility',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Addiction Recovery Support Circle',
@@ -414,7 +447,8 @@ try {
             start_time: '19:00',
             end_time: '20:30',
             address: '789 Community Way, Counseling Center',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Seasonal Affective Disorder Workshop',
@@ -426,7 +460,8 @@ try {
             start_time: '16:00',
             end_time: '17:30',
             address: '100 Excel Centre Drive, Wellness Center',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Posture and Ergonomics Clinic',
@@ -438,7 +473,8 @@ try {
             start_time: '18:00',
             end_time: '19:30',
             address: 'Stratford Shopping Centre, Therapy Wing',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Blood Donation Drive',
@@ -450,7 +486,8 @@ try {
             start_time: '10:00',
             end_time: '16:00',
             address: '789 Community Way, Main Hall',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Aging Gracefully Seminar',
@@ -462,7 +499,8 @@ try {
             start_time: '14:00',
             end_time: '16:00',
             address: '100 Excel Centre Drive, Senior Activity Center',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'Alternative Medicine Information Fair',
@@ -474,7 +512,8 @@ try {
             start_time: '11:00',
             end_time: '15:00',
             address: '789 Community Way, Exhibition Space',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
         {
             title: 'New Year Wellness Challenge Launch',
@@ -486,7 +525,8 @@ try {
             start_time: '18:30',
             end_time: '20:00',
             address: '100 Excel Centre Drive, Fitness Complex',
-            category_id: 2
+            category_id: 2,
+            is_featured: false
         },
 
         // Education & Learning (Category 3) - 20 events
@@ -500,7 +540,8 @@ try {
             start_time: '18:00',
             end_time: '20:00',
             address: '789 Community Way, Computer Learning Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Children\'s Reading Circle',
@@ -512,7 +553,8 @@ try {
             start_time: '16:00',
             end_time: '17:00',
             address: '789 Community Way, Children\'s Library',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Language Exchange Program',
@@ -524,7 +566,8 @@ try {
             start_time: '19:00',
             end_time: '20:30',
             address: '100 Excel Centre Drive, International Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Career Development Seminar',
@@ -536,7 +579,8 @@ try {
             start_time: '18:30',
             end_time: '21:00',
             address: 'Stratford Shopping Centre, Business Development Wing',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Financial Literacy Workshop',
@@ -548,7 +592,8 @@ try {
             start_time: '19:00',
             end_time: '21:00',
             address: '789 Community Way, Education Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Creative Writing Workshop',
@@ -560,7 +605,8 @@ try {
             start_time: '18:00',
             end_time: '20:00',
             address: '321 Arts Boulevard, Creative Writing Room',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Digital Photography Masterclass',
@@ -572,7 +618,8 @@ try {
             start_time: '13:00',
             end_time: '17:00',
             address: '100 Excel Centre Drive, Digital Media Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Parenting Skills Workshop',
@@ -584,7 +631,8 @@ try {
             start_time: '19:00',
             end_time: '21:00',
             address: '789 Community Way, Family Support Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Home Repair and Maintenance Class',
@@ -596,7 +644,8 @@ try {
             start_time: '18:00',
             end_time: '21:00',
             address: 'Stratford Shopping Centre, Workshop Area',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Coding for Beginners',
@@ -608,7 +657,8 @@ try {
             start_time: '18:30',
             end_time: '21:00',
             address: '100 Excel Centre Drive, Technology Learning Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Nutrition and Meal Planning Workshop',
@@ -620,7 +670,8 @@ try {
             start_time: '14:00',
             end_time: '17:00',
             address: '789 Community Way, Culinary Education Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Public Speaking and Presentation Skills',
@@ -632,7 +683,8 @@ try {
             start_time: '18:00',
             end_time: '20:30',
             address: '100 Excel Centre Drive, Main Auditorium',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Senior Technology Training',
@@ -644,7 +696,8 @@ try {
             start_time: '10:00',
             end_time: '12:00',
             address: '789 Community Way, Senior Technology Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Study Skills for Students',
@@ -656,7 +709,8 @@ try {
             start_time: '16:00',
             end_time: '18:00',
             address: 'Stratford Shopping Centre, Student Learning Hub',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Entrepreneurship Basics Workshop',
@@ -668,7 +722,8 @@ try {
             start_time: '19:00',
             end_time: '21:30',
             address: '100 Excel Centre Drive, Business Development Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Art History Appreciation Course',
@@ -680,7 +735,8 @@ try {
             start_time: '19:00',
             end_time: '20:30',
             address: '321 Arts Boulevard, Education Wing',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Basic Auto Maintenance Workshop',
@@ -692,7 +748,8 @@ try {
             start_time: '09:00',
             end_time: '13:00',
             address: '456 Industrial Drive, Community Workshop',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'Mindfulness and Meditation Training',
@@ -704,7 +761,8 @@ try {
             start_time: '18:00',
             end_time: '19:30',
             address: '789 Community Way, Wellness Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'College Preparation Workshop',
@@ -716,7 +774,8 @@ try {
             start_time: '18:30',
             end_time: '21:00',
             address: 'Stratford Shopping Centre, Education Services Wing',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
         {
             title: 'History of Our Community Lecture Series',
@@ -728,7 +787,8 @@ try {
             start_time: '19:00',
             end_time: '20:30',
             address: '100 Excel Centre Drive, Heritage Center',
-            category_id: 3
+            category_id: 3,
+            is_featured: false
         },
 
         // Arts & Culture (Category 4) - 20 events
@@ -742,7 +802,8 @@ try {
             start_time: '19:00',
             end_time: '21:00',
             address: '321 Arts Boulevard, Main Exhibition Hall',
-            category_id: 4
+            category_id: 4,
+            is_featured: true
         },
         {
             title: 'Local Music Night',
@@ -754,7 +815,8 @@ try {
             start_time: '20:00',
             end_time: '23:00',
             address: '100 Excel Centre Drive, Main Performance Hall',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Pottery Classes for Beginners',
@@ -766,7 +828,8 @@ try {
             start_time: '18:30',
             end_time: '20:30',
             address: '321 Arts Boulevard, Ceramics Workshop',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Drama Club Performance: Shakespeare Night',
@@ -778,7 +841,8 @@ try {
             start_time: '19:30',
             end_time: '21:30',
             address: '789 Community Way, Community Theater',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Cultural Heritage Festival',
@@ -790,7 +854,8 @@ try {
             start_time: '11:00',
             end_time: '18:00',
             address: 'Central Park, Main Festival Area',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Photography Exhibition: "Our Community Through the Lens"',
@@ -802,7 +867,8 @@ try {
             start_time: '10:00',
             end_time: '17:00',
             address: 'Stratford Shopping Centre, Gallery Wing',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Watercolor Painting Workshop',
@@ -814,7 +880,8 @@ try {
             start_time: '14:00',
             end_time: '17:00',
             address: '321 Arts Boulevard, Painting Workshop Room',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Community Choir Concert',
@@ -826,7 +893,8 @@ try {
             start_time: '19:30',
             end_time: '21:00',
             address: '100 Excel Centre Drive, Main Concert Hall',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Sculpture in the Park Installation',
@@ -838,7 +906,8 @@ try {
             start_time: '15:00',
             end_time: '16:30',
             address: 'Central Park, Sculpture Garden Area',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Folk Dance Workshop and Social',
@@ -850,7 +919,8 @@ try {
             start_time: '19:00',
             end_time: '21:30',
             address: '789 Community Way, Main Dance Hall',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Creative Writing Reading Night',
@@ -862,7 +932,8 @@ try {
             start_time: '19:30',
             end_time: '21:00',
             address: '321 Arts Boulevard, Writers Room',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Jazz Appreciation Evening',
@@ -874,7 +945,8 @@ try {
             start_time: '20:00',
             end_time: '22:30',
             address: '100 Excel Centre Drive, Intimate Performance Space',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Craft Fair and Artisan Market',
@@ -886,7 +958,8 @@ try {
             start_time: '10:00',
             end_time: '16:00',
             address: 'Stratford Shopping Centre, Market Hall',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Film Screening: Local Documentary Premiere',
@@ -898,7 +971,8 @@ try {
             start_time: '19:00',
             end_time: '21:00',
             address: '789 Community Way, Main Auditorium',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Holiday Decoration Workshop',
@@ -910,7 +984,8 @@ try {
             start_time: '14:00',
             end_time: '17:00',
             address: '321 Arts Boulevard, Multi-Purpose Craft Room',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Street Art and Mural Walking Tour',
@@ -922,7 +997,8 @@ try {
             start_time: '14:00',
             end_time: '16:00',
             address: 'Central Park Main Entrance, Begin Walking Tour',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Community Theater Auditions',
@@ -934,7 +1010,8 @@ try {
             start_time: '18:00',
             end_time: '21:00',
             address: '789 Community Way, Main Theater',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Traditional Crafts Workshop: Basket Weaving',
@@ -946,7 +1023,8 @@ try {
             start_time: '13:00',
             end_time: '17:00',
             address: '321 Arts Boulevard, Heritage Crafts Workshop',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Winter Solstice Celebration',
@@ -958,7 +1036,8 @@ try {
             start_time: '17:00',
             end_time: '19:00',
             address: 'Central Park, Natural Amphitheater Area',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
         {
             title: 'Year-End Art Student Showcase',
@@ -970,7 +1049,8 @@ try {
             start_time: '18:00',
             end_time: '20:00',
             address: '100 Excel Centre Drive, Student Gallery',
-            category_id: 4
+            category_id: 4,
+            is_featured: false
         },
 
         // Environment & Sustainability (Category 5) - 20 events
@@ -984,7 +1064,8 @@ try {
             start_time: '10:00',
             end_time: '13:00',
             address: '654 Greenfield Avenue, Community Garden',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Monthly Recycling Drive',
@@ -996,7 +1077,8 @@ try {
             start_time: '09:00',
             end_time: '15:00',
             address: '100 Excel Centre Drive, North Parking Lot',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Tree Planting Event',
@@ -1008,7 +1090,8 @@ try {
             start_time: '08:30',
             end_time: '12:00',
             address: 'Central Park, North Restoration Zone',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Sustainability Workshop: Reduce, Reuse, Recycle',
@@ -1020,7 +1103,8 @@ try {
             start_time: '14:00',
             end_time: '16:30',
             address: '789 Community Way, Environmental Education Center',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Community Clean-up Day',
@@ -1032,7 +1116,8 @@ try {
             start_time: '08:00',
             end_time: '12:00',
             address: '789 Community Way, Volunteer Coordination Center',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Composting Workshop',
@@ -1044,7 +1129,8 @@ try {
             start_time: '11:00',
             end_time: '13:00',
             address: '654 Greenfield Avenue, Garden Learning Center',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Native Plant Sale and Information Fair',
@@ -1056,7 +1142,8 @@ try {
             start_time: '09:00',
             end_time: '16:00',
             address: 'Stratford Shopping Centre, Garden Center',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Energy Conservation Home Audit Workshop',
@@ -1068,7 +1155,8 @@ try {
             start_time: '10:00',
             end_time: '14:00',
             address: '100 Excel Centre Drive, Energy Education Center',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Pollinator Garden Design Workshop',
@@ -1080,7 +1168,8 @@ try {
             start_time: '13:00',
             end_time: '16:00',
             address: '321 Arts Boulevard, Outdoor Learning Space',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Water Conservation Techniques Workshop',
@@ -1092,7 +1181,8 @@ try {
             start_time: '14:00',
             end_time: '16:30',
             address: '654 Greenfield Avenue, Demo Garden',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Sustainable Transportation Fair',
@@ -1104,7 +1194,8 @@ try {
             start_time: '10:00',
             end_time: '15:00',
             address: 'Central Park, Main Event Area',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Climate Change Impact Discussion',
@@ -1116,7 +1207,8 @@ try {
             start_time: '19:00',
             end_time: '21:00',
             address: '789 Community Way, Conference Hall',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Green Building and Renovation Fair',
@@ -1128,7 +1220,8 @@ try {
             start_time: '11:00',
             end_time: '17:00',
             address: '100 Excel Centre Drive, Main Exhibition Space',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Urban Wildlife Protection Workshop',
@@ -1140,7 +1233,8 @@ try {
             start_time: '13:00',
             end_time: '15:30',
             address: 'Central Park, Wildlife Education Center',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Eco-Friendly Cleaning Products Workshop',
@@ -1152,7 +1246,8 @@ try {
             start_time: '18:30',
             end_time: '20:30',
             address: '789 Community Way, Multi-Purpose Workshop Room',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Solar Energy Information Session',
@@ -1164,7 +1259,8 @@ try {
             start_time: '15:00',
             end_time: '17:00',
             address: 'Stratford Shopping Centre, Conference Room B',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Sustainable Fashion and Clothing Swap',
@@ -1176,7 +1272,8 @@ try {
             start_time: '10:00',
             end_time: '15:00',
             address: '789 Community Way, Social Hall',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Food Waste Reduction Workshop',
@@ -1188,7 +1285,8 @@ try {
             start_time: '16:00',
             end_time: '18:30',
             address: '789 Community Way, Culinary Education Center',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Sustainable Holiday Celebrations',
@@ -1200,7 +1298,8 @@ try {
             start_time: '18:00',
             end_time: '20:00',
             address: '321 Arts Boulevard, Community Event Space',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
         {
             title: 'Year-End Environmental Impact Review',
@@ -1212,7 +1311,8 @@ try {
             start_time: '19:00',
             end_time: '21:00',
             address: '100 Excel Centre Drive, Main Auditorium',
-            category_id: 5
+            category_id: 5,
+            is_featured: false
         },
 
         // Social Services (Category 6) - 20 events
@@ -1226,7 +1326,8 @@ try {
             start_time: '18:00',
             end_time: '20:30',
             address: '456 Service Drive, Community Food Bank',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Senior Support Services Information Session',
@@ -1238,7 +1339,8 @@ try {
             start_time: '14:00',
             end_time: '16:00',
             address: '100 Excel Centre Drive, Senior Services Center',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Volunteer Coordination Meeting',
@@ -1250,7 +1352,8 @@ try {
             start_time: '19:00',
             end_time: '20:30',
             address: '789 Community Way, Volunteer Services Office',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Community Counseling Services Open House',
@@ -1262,7 +1365,8 @@ try {
             start_time: '17:00',
             end_time: '19:00',
             address: 'Stratford Shopping Centre, Wellness Wing',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Emergency Assistance Program Information',
@@ -1274,7 +1378,8 @@ try {
             start_time: '16:00',
             end_time: '17:30',
             address: '789 Community Way, Social Services Office',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Homeless Outreach Volunteer Training',
@@ -1286,7 +1391,8 @@ try {
             start_time: '09:00',
             end_time: '15:00',
             address: '100 Excel Centre Drive, Social Services Training Center',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Community Resource Fair',
@@ -1298,7 +1404,8 @@ try {
             start_time: '10:00',
             end_time: '16:00',
             address: 'Central Park, Main Community Pavilion',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Family Support Services Workshop',
@@ -1310,7 +1417,8 @@ try {
             start_time: '13:00',
             end_time: '15:00',
             address: '789 Community Way, Family Services Center',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Clothing Donation and Distribution Event',
@@ -1322,7 +1430,8 @@ try {
             start_time: '09:00',
             end_time: '15:00',
             address: 'Stratford Shopping Centre, Community Service Area',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Youth Mentorship Program Launch',
@@ -1334,7 +1443,8 @@ try {
             start_time: '18:00',
             end_time: '20:00',
             address: '100 Excel Centre Drive, Youth Development Center',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Holiday Toy and Gift Collection',
@@ -1346,7 +1456,8 @@ try {
             start_time: '10:00',
             end_time: '18:00',
             address: '789 Community Way, Holiday Distribution Center',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Legal Aid Clinic',
@@ -1358,7 +1469,8 @@ try {
             start_time: '09:00',
             end_time: '16:00',
             address: 'Stratford Shopping Centre, Legal Aid Office',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Senior Companion Program Information',
@@ -1370,7 +1482,8 @@ try {
             start_time: '15:00',
             end_time: '16:30',
             address: '100 Excel Centre Drive, Senior Programs Office',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Community Crisis Response Training',
@@ -1382,7 +1495,8 @@ try {
             start_time: '09:00',
             end_time: '16:00',
             address: '789 Community Way, Emergency Training Center',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Disability Services Information Fair',
@@ -1394,7 +1508,8 @@ try {
             start_time: '13:00',
             end_time: '17:00',
             address: '100 Excel Centre Drive, Accessibility Services Center',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Immigration Services Workshop',
@@ -1406,7 +1521,8 @@ try {
             start_time: '14:00',
             end_time: '17:00',
             address: '789 Community Way, Multicultural Services Center',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Substance Abuse Support Group',
@@ -1418,7 +1534,8 @@ try {
             start_time: '19:00',
             end_time: '20:30',
             address: 'Stratford Shopping Centre, Counseling Services Wing',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Community Mediation Training',
@@ -1430,7 +1547,8 @@ try {
             start_time: '09:00',
             end_time: '17:00',
             address: '100 Excel Centre Drive, Mediation Training Room',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Housing Assistance Information Session',
@@ -1442,7 +1560,8 @@ try {
             start_time: '18:00',
             end_time: '19:30',
             address: '789 Community Way, Housing Services Department',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
         {
             title: 'Year-End Volunteer Appreciation Event',
@@ -1454,7 +1573,8 @@ try {
             start_time: '18:00',
             end_time: '21:00',
             address: '100 Excel Centre Drive, Main Banquet Hall',
-            category_id: 6
+            category_id: 6,
+            is_featured: false
         },
 
         // Shop Safe, Shop Local (Category 7) - 20 events
@@ -1468,7 +1588,8 @@ try {
             start_time: '18:00',
             end_time: '20:30',
             address: 'Stratford Shopping Centre, Central Atrium',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Shop Local Campaign Launch',
@@ -1480,7 +1601,8 @@ try {
             start_time: '11:00',
             end_time: '15:00',
             address: 'Central Park, Business Community Pavilion',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'New Business Registration Workshop',
@@ -1492,7 +1614,8 @@ try {
             start_time: '19:00',
             end_time: '21:00',
             address: '100 Excel Centre Drive, Business Services Center',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Meet Your Neighbors: Home-Based Business Fair',
@@ -1504,7 +1627,8 @@ try {
             start_time: '10:00',
             end_time: '16:00',
             address: '789 Community Way, Main Exhibition Space',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Safe Shopping Practices Workshop',
@@ -1516,7 +1640,8 @@ try {
             start_time: '18:30',
             end_time: '20:00',
             address: 'Stratford Shopping Centre, Consumer Services Wing',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Local Farmers and Producers Market',
@@ -1528,7 +1653,8 @@ try {
             start_time: '08:00',
             end_time: '14:00',
             address: 'Central Park, Designated Market Area',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Small Business Saturday Celebration',
@@ -1540,7 +1666,8 @@ try {
             start_time: '09:00',
             end_time: '18:00',
             address: 'Various Local Business Locations',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Business Owner Mentorship Program',
@@ -1552,7 +1679,8 @@ try {
             start_time: '18:00',
             end_time: '20:00',
             address: '100 Excel Centre Drive, Entrepreneurship Center',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Local Artisan Holiday Market',
@@ -1564,7 +1692,8 @@ try {
             start_time: '10:00',
             end_time: '17:00',
             address: 'Stratford Shopping Centre, Holiday Market Hall',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Consumer Rights and Protection Workshop',
@@ -1576,7 +1705,8 @@ try {
             start_time: '19:00',
             end_time: '20:30',
             address: '789 Community Way, Consumer Education Center',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Local Business Directory and App Launch',
@@ -1588,7 +1718,8 @@ try {
             start_time: '17:00',
             end_time: '19:00',
             address: '100 Excel Centre Drive, Digital Innovation Lab',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Pop-up Shop Program Information Session',
@@ -1600,7 +1731,8 @@ try {
             start_time: '18:00',
             end_time: '19:30',
             address: 'Stratford Shopping Centre, Retail Services Office',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Business Security and Fraud Prevention Workshop',
@@ -1612,7 +1744,8 @@ try {
             start_time: '14:00',
             end_time: '16:30',
             address: '100 Excel Centre Drive, Security Education Center',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Local Food and Restaurant Week',
@@ -1624,7 +1757,8 @@ try {
             start_time: '11:00',
             end_time: '21:00',
             address: 'Various Local Restaurant Locations',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Business Plan Development Workshop',
@@ -1636,7 +1770,8 @@ try {
             start_time: '18:30',
             end_time: '21:00',
             address: '789 Community Way, Entrepreneurship Development Center',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Local Service Provider Showcase',
@@ -1648,7 +1783,8 @@ try {
             start_time: '17:00',
             end_time: '20:00',
             address: 'Central Park, Professional Services Area',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'E-commerce for Local Businesses Workshop',
@@ -1660,7 +1796,8 @@ try {
             start_time: '13:00',
             end_time: '17:00',
             address: '100 Excel Centre Drive, Digital Business Center',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Customer Service Excellence Training',
@@ -1672,7 +1809,8 @@ try {
             start_time: '09:00',
             end_time: '15:00',
             address: 'Stratford Shopping Centre, Professional Training Facility',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'Local Business Awards and Recognition Ceremony',
@@ -1684,7 +1822,8 @@ try {
             start_time: '19:00',
             end_time: '22:00',
             address: '100 Excel Centre Drive, Grand Ballroom',
-            category_id: 7
+            category_id: 7,
+            is_featured: false
         },
         {
             title: 'New Year Local Business Planning Session',
@@ -1713,7 +1852,8 @@ try {
                 event.start_time,
                 event.end_time,
                 event.address,
-                event.category_id
+                event.category_id,
+                event.is_featured ? 1 : 0
             );
             console.log(`✓ Created event: "${event.title}" (ID: ${result.lastInsertRowid})`);
         } catch (error) {

@@ -97,6 +97,15 @@ const eventQueries = {
         ORDER BY e.date ASC, e.start_time ASC
     `),
     
+    // Get featured events
+    getFeaturedEvents: db.prepare(`
+        SELECT e.*, c.name as category_name
+        FROM events e
+        LEFT JOIN categories c ON e.category_id = c.id
+        WHERE e.is_featured = 1 AND e.date >= DATE('now')
+        ORDER BY e.date ASC, e.start_time ASC
+    `),
+    
     // Search events by title or description
     searchEvents: db.prepare(`
         SELECT e.*, c.name as category_name
@@ -108,15 +117,15 @@ const eventQueries = {
     
     // Create new event
     createEvent: db.prepare(`
-        INSERT INTO events (title, description, content, image_url, location, date, start_time, end_time, address, category_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO events (title, description, content, image_url, location, date, start_time, end_time, address, category_id, is_featured)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `),
     
     // Update event
     updateEvent: db.prepare(`
         UPDATE events 
         SET title = ?, description = ?, content = ?, image_url = ?, location = ?, 
-            date = ?, start_time = ?, end_time = ?, address = ?, category_id = ?, 
+            date = ?, start_time = ?, end_time = ?, address = ?, category_id = ?, is_featured = ?, 
             updated_at = CURRENT_TIMESTAMP
         WHERE id = ?
     `),
