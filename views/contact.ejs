@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main style="margin-top: 80px;">
+        <section class="contact-section">
+            <div class="container">
+                <h1 class="page-title">Contact Us</h1>
+                <p class="page-subtitle">We'd love to hear from you! Get in touch with any questions, suggestions, or feedback.</p>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2>Get in Touch</h2>
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-text">
+                                <h3>Address</h3>
+                                <p>Community Portal Centre<br>15 Victoria Street<br>London E15 4PH<br>United Kingdom</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-text">
+                                <h3>Phone</h3>
+                                <p>020 7946 0958</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">✉️</div>
+                            <div class="info-text">
+                                <h3>Email</h3>
+                                <p>info@communityportal.uk</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">🕒</div>
+                            <div class="info-text">
+                                <h3>Office Hours</h3>
+                                <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="social-media">
+                            <h3>Follow Us</h3>
+                            <div class="social-links">
+                                <a href="#" class="social-link">📘 Facebook</a>
+                                <a href="#" class="social-link">🐦 Twitter</a>
+                                <a href="#" class="social-link">📸 Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <h2>Send us a Message</h2>
+                        <form id="contactForm" class="contact-form" method="POST" action="/contact">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required 
+                                       placeholder="Enter your full name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required 
+                                       placeholder="Enter your email address">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" 
+                                       placeholder="Enter your phone number (optional)">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Please select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="event">Event Information</option>
+                                    <option value="volunteer">Volunteer Opportunities</option>
+                                    <option value="suggestion">Suggestion/Feedback</option>
+                                    <option value="complaint">Complaint</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="area">Community Area of Interest</label>
+                                <select id="area" name="area">
+                                    <option value="">Select an area (optional)</option>
+                                    <option value="sports">Sports & Recreation</option>
+                                    <option value="health">Health & Wellness</option>
+                                    <option value="education">Education & Learning</option>
+                                    <option value="arts">Arts & Culture</option>
+                                    <option value="environment">Environment & Sustainability</option>
+                                    <option value="social">Social Services</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="6" required 
+                                          placeholder="Please provide details about your inquiry or feedback..."></textarea>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                                    <span class="checkmark"></span>
+                                    I would like to receive updates about community events and activities
+                                </label>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="privacy" name="privacy" required value="accepted">
+                                    <span class="checkmark"></span>
+                                    I agree to the <a href="#" target="_blank">Privacy Policy</a> and consent to the processing of my personal data *
+                                </label>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Send Message</button>
+                                <button type="reset" class="btn-secondary">Clear Form</button>
+                            </div>
+                        </form>
+                        
+                        <div id="form-status" class="form-status"></div>
+                    </div>
+                </div>
+
+                <div class="additional-info">
+                    <h2>Other Ways to Get Involved</h2>
+                    <div class="involvement-grid">
+                        <div class="involvement-card">
+                            <div class="involvement-icon">🗓️</div>
+                            <h3>Attend Our Meetings</h3>
+                            <p>Join our monthly community meetings every first Tuesday at 7:00 PM in the Community Center.</p>
+                        </div>
+                        
+                        <div class="involvement-card">
+                            <div class="involvement-icon">🤝</div>
+                            <h3>Volunteer</h3>
+                            <p>Help make a difference in your community by volunteering for events and ongoing programs.</p>
+                        </div>
+                        
+                        <div class="involvement-card">
+                            <div class="involvement-icon">💡</div>
+                            <h3>Share Ideas</h3>
+                            <p>Have an idea for a new program or event? We'd love to hear your suggestions!</p>
+                        </div>
+                        
+                        <div class="involvement-card">
+                            <div class="involvement-icon">📢</div>
+                            <h3>Spread the Word</h3>
+                            <p>Help us reach more community members by sharing our events and programs with friends and neighbors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script src="/js/script.js"></script>
+    <script>
+        // Enhanced contact form handling for EJS template
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(contactForm);
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.textContent;
+                    
+                    submitButton.textContent = 'Sending...';
+                    submitButton.disabled = true;
+                    
+                    fetch('/contact', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const formStatus = document.getElementById('form-status');
+                        if (data.success) {
+                            formStatus.textContent = data.message;
+                            formStatus.className = 'form-status success';
+                            contactForm.reset();
+                        } else {
+                            formStatus.textContent = data.message;
+                            formStatus.className = 'form-status error';
+                        }
+                    })
+                    .catch(error => {
+                        const formStatus = document.getElementById('form-status');
+                        formStatus.textContent = 'There was an error sending your message. Please try again.';
+                        formStatus.className = 'form-status error';
+                    })
+                    .finally(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

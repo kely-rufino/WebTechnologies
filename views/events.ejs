@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main style="margin-top: 80px;">
+        <section class="events-section">
+            <div class="container">
+                <h1 class="page-title">Community Events</h1>
+                <p class="page-subtitle">Discover all upcoming events and activities in our community</p>
+                
+                <div class="events-grid">
+                    <% events.forEach(event => { %>
+                    <div class="event-card <%= event.featured ? 'featured' : '' %>">
+                        <% if (event.featured) { %>
+                            <div class="event-badge">
+                                <span>FEATURED</span>
+                            </div>
+                        <% } %>
+                        <div class="event-date-badge">
+                            <% 
+                            const eventDate = new Date(event.date);
+                            const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+                                              "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                            %>
+                            <span class="month"><%= monthNames[eventDate.getMonth()] %></span>
+                            <span class="day"><%= eventDate.getDate() %></span>
+                        </div>
+                        <div class="event-info">
+                            <h3><%= event.title %></h3>
+                            <p class="event-time"><%= event.time %></p>
+                            <p class="event-location">📍 <%= event.location %></p>
+                            <% if (event.category) { %>
+                                <p class="event-category">Category: <%= event.category %></p>
+                            <% } %>
+                            <p class="event-description"><%= event.description %></p>
+                            <div class="event-actions">
+                                <button class="btn-primary">Register</button>
+                                <button class="btn-secondary">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+
+                <% if (events.length === 0) { %>
+                    <div class="no-events">
+                        <h3>No events currently scheduled</h3>
+                        <p>Check back soon for upcoming community events, or <a href="/contact">contact us</a> to suggest an event!</p>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

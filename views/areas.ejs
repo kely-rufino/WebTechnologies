@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main style="margin-top: 80px;">
+        <section class="areas-section">
+            <div class="container">
+                <h1 class="page-title">Community Areas</h1>
+                <p class="page-subtitle">Explore the different areas of interest and activities available in our community</p>
+                
+                <div class="areas-grid">
+                    <% areas.forEach(area => { %>
+                    <div class="area-card">
+                        <div class="area-icon"><%= area.icon %></div>
+                        <h3><%= area.name %></h3>
+                        <p><%= area.description %></p>
+                        
+                        <div class="area-activities">
+                            <h4>Available Activities:</h4>
+                            <ul>
+                                <% if (area.activities) { %>
+                                    <% area.activities.forEach(activity => { %>
+                                    <li><%= activity %></li>
+                                    <% }) %>
+                                <% } %>
+                            </ul>
+                        </div>
+                        
+                        <div class="area-actions">
+                            <button class="btn-primary">Get Involved</button>
+                            <button class="btn-secondary">Learn More</button>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+
+                <div class="call-to-action">
+                    <h2>Ready to Get Involved?</h2>
+                    <p>Choose an area that interests you and start participating in your community today!</p>
+                    <a href="/contact" class="btn-primary">Contact Us to Get Started</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

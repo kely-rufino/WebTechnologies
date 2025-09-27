@@ -1,0 +1,32 @@
+<!-- Community Areas Partial -->
+<div class="areas-grid">
+    <% areas.forEach(area => { %>
+    <div class="area-card">
+        <div class="area-icon"><%= area.icon %></div>
+        <h3><%= area.name %></h3>
+        <p><%= area.description %></p>
+        
+        <% if (showActivities !== false && area.activities) { %>
+        <div class="area-activities">
+            <h4><%= showActivities === 'current' ? 'Current Activities:' : 'Available Activities:' %></h4>
+            <ul>
+                <% area.activities.forEach(activity => { %>
+                <li><%= activity %></li>
+                <% }) %>
+            </ul>
+        </div>
+        <% } %>
+        
+        <% if (showActions !== false) { %>
+        <div class="area-actions">
+            <% if (isHomepage) { %>
+                <button class="area-button">View All <%= area.name %></button>
+            <% } else { %>
+                <button class="btn-primary">Get Involved</button>
+                <button class="btn-secondary">Learn More</button>
+            <% } %>
+        </div>
+        <% } %>
+    </div>
+    <% }) %>
+</div>
