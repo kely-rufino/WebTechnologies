@@ -157,6 +157,12 @@ app.get('/contact', (req, res) => {
   });
 });
 
+app.get('/privacy', (req, res) => {
+  res.render('privacy', {
+    title: 'Privacy Policy - Local Community Portal'
+  });
+});
+
 app.post('/contact', async (req, res) => {
   const { name, email, phone, subject, area, message, newsletter } = req.body;
   

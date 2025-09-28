@@ -22,5 +22,8 @@
     "local"
   ],
   "author": "Community Portal Team",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "html-validate": "^10.0.0"
+  }
 }

@@ -262,6 +262,27 @@ footer {
     color: #95a5a6;
 }
 
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #95a5a6;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #667eea;
+}
+
+.footer-links span {
+    color: #7f8c8d;
+    margin: 0 5px;
+}
+
 /* ===== BUTTON STYLES ===== */
 .cta-button {
     background: #ff6b6b;
