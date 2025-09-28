@@ -673,17 +673,6 @@ footer {
     color: white;
 }
 
-.cookie-btn-settings {
-    background: transparent;
-    color: #90cdf4;
-    border: 1px solid #90cdf4;
-}
-
-.cookie-btn-settings:hover {
-    background: #90cdf4;
-    color: #2d3748;
-}
-
 /* Cookie Settings Modal */
 .cookie-modal {
     position: fixed;

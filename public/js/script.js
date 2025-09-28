@@ -874,7 +874,6 @@ function initializeCookieConsent() {
     const cookieModal = document.getElementById('cookieModal');
     const cookieAccept = document.getElementById('cookieAccept');
     const cookieDecline = document.getElementById('cookieDecline');
-    const cookieSettings = document.getElementById('cookieSettings');
     const cookieModalClose = document.getElementById('cookieModalClose');
     const cookieSaveSettings = document.getElementById('cookieSaveSettings');
     const cookieAcceptAll = document.getElementById('cookieAcceptAll');
@@ -904,7 +903,6 @@ function initializeCookieConsent() {
         hideCookieModal();
     });
     cookieDecline?.addEventListener('click', () => declineAllCookies());
-    cookieSettings?.addEventListener('click', () => showCookieModal());
     cookieModalClose?.addEventListener('click', () => hideCookieModal());
     cookieSaveSettings?.addEventListener('click', () => saveCustomPreferences());
     cookieAcceptAll?.addEventListener('click', () => {

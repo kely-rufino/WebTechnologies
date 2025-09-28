@@ -233,14 +233,3 @@
 .cookie-btn-decline:hover {
     background: #c53030;
 }
-
-.cookie-btn-settings {
-    background: transparent;
-    color: #667eea;
-    border: 2px solid #667eea;
-}
-
-.cookie-btn-settings:hover {
-    background: #667eea;
-    color: white;
-}
