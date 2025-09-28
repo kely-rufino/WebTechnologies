@@ -2,14 +2,23 @@
 
 // DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', function() {
-    initializeNavigation();
-    initializeFAQ();
-    initializeContactForm();
-    initializeScrollEffects();
-    initializeEventHandlers();
-    initializeSearch(); // New AJAX search functionality
-    initializeEventRefresh(); // New AJAX event refresh
-    initializeHeaderSearch(); // New header search functionality
+    console.log('DOM loaded, starting initialization...');
+    
+    try {
+        initializeNavigation();
+        initializeFAQ();
+        initializeContactForm();
+        initializeScrollEffects();
+        initializeEventHandlers();
+        initializeSearch(); // New AJAX search functionality
+        initializeEventRefresh(); // New AJAX event refresh
+        initializeHeaderSearch(); // New header search functionality
+        console.log('About to initialize cookie consent...');
+        initializeCookieConsent(); // Cookie consent functionality
+        console.log('All initialization complete');
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    }
 });
 
 // AJAX Search functionality
@@ -857,6 +866,343 @@ function initializeHeaderSearch() {
     });
 }
 
+// ===== COOKIE CONSENT FUNCTIONALITY =====
+
+function initializeCookieConsent() {
+    console.log('Cookie consent initializing...');
+    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieModal = document.getElementById('cookieModal');
+    const cookieAccept = document.getElementById('cookieAccept');
+    const cookieDecline = document.getElementById('cookieDecline');
+    const cookieSettings = document.getElementById('cookieSettings');
+    const cookieModalClose = document.getElementById('cookieModalClose');
+    const cookieSaveSettings = document.getElementById('cookieSaveSettings');
+    const cookieAcceptAll = document.getElementById('cookieAcceptAll');
+
+    console.log('Cookie banner element found:', !!cookieBanner);
+    console.log('Cookie modal element found:', !!cookieModal);
+
+    // For debugging - temporarily always show banner
+    console.log('Force showing banner for debugging...');
+    showCookieBanner();
+    
+    // Check if user has already made a choice (original logic commented for testing)
+    /*
+    const existingConsent = getCookieConsent();
+    console.log('Existing cookie consent:', existingConsent);
+    
+    if (!existingConsent) {
+        console.log('No existing consent, showing banner...');
+        showCookieBanner();
+    } else {
+        console.log('Consent already exists, banner will not show');
+    }
+    */    // Event listeners
+    cookieAccept?.addEventListener('click', () => {
+        console.log('Accept all cookies clicked');
+        acceptAllCookies();
+        hideCookieModal();
+    });
+    cookieDecline?.addEventListener('click', () => declineAllCookies());
+    cookieSettings?.addEventListener('click', () => showCookieModal());
+    cookieModalClose?.addEventListener('click', () => hideCookieModal());
+    cookieSaveSettings?.addEventListener('click', () => saveCustomPreferences());
+    cookieAcceptAll?.addEventListener('click', () => {
+        acceptAllCookies();
+        hideCookieModal();
+    });
+
+    // Initialize toggle switches
+    initializeCookieToggles();
+
+    // Close modal when clicking outside
+    cookieModal?.addEventListener('click', (e) => {
+        if (e.target === cookieModal) {
+            hideCookieModal();
+        }
+    });
+
+    // Privacy page cookie management buttons
+    const manageCookiePreferences = document.getElementById('manageCookiePreferences');
+    const revokeCookieConsent = document.getElementById('revokeCookieConsent');
+    
+    manageCookiePreferences?.addEventListener('click', () => {
+        showCookieModal();
+    });
+    
+    revokeCookieConsent?.addEventListener('click', () => {
+        if (confirm('Are you sure you want to revoke all cookie consent? This will reset your preferences and you may need to accept cookies again.')) {
+            revokeCookieConsentFunction();
+            alert('Cookie consent has been revoked. The cookie banner will appear again on your next page visit.');
+        }
+    });
+}
+
+function initializeCookieToggles() {
+    const toggles = document.querySelectorAll('.cookie-toggle:not(.disabled)');
+    const savedPreferences = getCookiePreferences();
+
+    toggles.forEach(toggle => {
+        const category = toggle.getAttribute('data-category');
+        
+        // Set initial state based on saved preferences
+        if (savedPreferences && savedPreferences[category]) {
+            toggle.classList.add('active');
+        }
+
+        // Add click event
+        toggle.addEventListener('click', () => {
+            if (!toggle.classList.contains('disabled')) {
+                toggle.classList.toggle('active');
+            }
+        });
+    });
+}
+
+function showCookieBanner() {
+    console.log('showCookieBanner called');
+    const banner = document.getElementById('cookieBanner');
+    console.log('Banner element:', banner);
+    if (banner) {
+        console.log('Adding show class to banner immediately for testing');
+        // Force visible with inline styles for debugging
+        banner.style.display = 'block';
+        banner.style.position = 'fixed';
+        banner.style.bottom = '0';
+        banner.style.left = '0';
+        banner.style.right = '0';
+        banner.style.backgroundColor = '#2d3748';
+        banner.style.color = 'white';
+        banner.style.zIndex = '10000';
+        banner.style.padding = '20px';
+        banner.classList.add('show');
+        console.log('Show class added and inline styles applied');
+    } else {
+        console.error('Cookie banner element not found in showCookieBanner');
+    }
+}
+
+function hideCookieBanner() {
+    const banner = document.getElementById('cookieBanner');
+    if (banner) {
+        banner.classList.remove('show');
+    }
+}
+
+function showCookieModal() {
+    const modal = document.getElementById('cookieModal');
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function hideCookieModal() {
+    const modal = document.getElementById('cookieModal');
+    console.log('aaaa')
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+function acceptAllCookies() {
+    const preferences = {
+        essential: true,
+        analytics: true,
+        functional: true,
+        marketing: true,
+        timestamp: new Date().toISOString()
+    };
+
+    setCookieConsent('accepted', preferences);
+    hideCookieBanner();
+    
+    // Update toggles in modal
+    updateToggleStates(preferences);
+    
+    console.log('All cookies accepted');
+    // Here you would typically initialize your analytics, marketing scripts, etc.
+    initializeAnalytics();
+    initializeFunctionalCookies();
+    initializeMarketingCookies();
+}
+
+function declineAllCookies() {
+    const preferences = {
+        essential: true, // Essential cookies cannot be declined
+        analytics: false,
+        functional: false,
+        marketing: false,
+        timestamp: new Date().toISOString()
+    };
+
+    setCookieConsent('declined', preferences);
+    hideCookieBanner();
+    
+    // Update toggles in modal
+    updateToggleStates(preferences);
+    
+    console.log('Non-essential cookies declined');
+}
+
+function saveCustomPreferences() {
+    const toggles = document.querySelectorAll('.cookie-toggle');
+    const preferences = {
+        timestamp: new Date().toISOString()
+    };
+
+    toggles.forEach(toggle => {
+        const category = toggle.getAttribute('data-category');
+        preferences[category] = toggle.classList.contains('active');
+    });
+
+    setCookieConsent('custom', preferences);
+    hideCookieBanner();
+    hideCookieModal();
+    
+    console.log('Custom cookie preferences saved:', preferences);
+    
+    // Initialize features based on preferences
+    if (preferences.analytics) initializeAnalytics();
+    if (preferences.functional) initializeFunctionalCookies();
+    if (preferences.marketing) initializeMarketingCookies();
+}
+
+function updateToggleStates(preferences) {
+    const toggles = document.querySelectorAll('.cookie-toggle');
+    toggles.forEach(toggle => {
+        const category = toggle.getAttribute('data-category');
+        if (preferences[category]) {
+            toggle.classList.add('active');
+        } else {
+            toggle.classList.remove('active');
+        }
+    });
+}
+
+// Cookie utility functions
+function setCookieConsent(status, preferences) {
+    const consentData = {
+        status: status,
+        preferences: preferences,
+        version: '1.0',
+        timestamp: new Date().toISOString()
+    };
+    
+    // Set cookie for 365 days
+    const expires = new Date();
+    expires.setTime(expires.getTime() + (365 * 24 * 60 * 60 * 1000));
+    
+    document.cookie = `cookieConsent=${JSON.stringify(consentData)}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+    
+    // Also store in localStorage as backup
+    localStorage.setItem('cookieConsent', JSON.stringify(consentData));
+}
+
+function getCookieConsent() {
+    // Try to get from cookie first
+    const cookies = document.cookie.split(';');
+    const consentCookie = cookies.find(cookie => cookie.trim().startsWith('cookieConsent='));
+    
+    if (consentCookie) {
+        try {
+            return JSON.parse(consentCookie.split('=')[1]);
+        } catch (e) {
+            console.error('Error parsing cookie consent:', e);
+        }
+    }
+    
+    // Fallback to localStorage
+    const localConsent = localStorage.getItem('cookieConsent');
+    if (localConsent) {
+        try {
+            return JSON.parse(localConsent);
+        } catch (e) {
+            console.error('Error parsing localStorage consent:', e);
+        }
+    }
+    
+    return null;
+}
+
+function getCookiePreferences() {
+    const consent = getCookieConsent();
+    return consent ? consent.preferences : null;
+}
+
+function hasConsentForCategory(category) {
+    const preferences = getCookiePreferences();
+    return preferences ? preferences[category] : false;
+}
+
+// Feature initialization functions (placeholders - implement based on your needs)
+function initializeAnalytics() {
+    if (!hasConsentForCategory('analytics')) return;
+    
+    console.log('Analytics initialized');
+    // Initialize Google Analytics, Adobe Analytics, etc.
+    // Example:
+    // gtag('config', 'GA_MEASUREMENT_ID');
+}
+
+function initializeFunctionalCookies() {
+    if (!hasConsentForCategory('functional')) return;
+    
+    console.log('Functional cookies initialized');
+    // Initialize features like chat widgets, preference storage, etc.
+}
+
+function initializeMarketingCookies() {
+    if (!hasConsentForCategory('marketing')) return;
+    
+    console.log('Marketing cookies initialized');
+    // Initialize Facebook Pixel, advertising cookies, etc.
+}
+
+// Utility function to check consent before setting cookies
+function setCookieIfAllowed(name, value, category = 'functional', days = 30) {
+    if (!hasConsentForCategory(category)) {
+        console.log(`Cookie ${name} not set - no consent for ${category} cookies`);
+        return false;
+    }
+    
+    const expires = new Date();
+    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+    return true;
+}
+
+// Function to revoke consent (for privacy page or user settings)
+function revokeCookieConsentFunction() {
+    // Remove consent cookie
+    document.cookie = 'cookieConsent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    localStorage.removeItem('cookieConsent');
+    
+    // Clear all non-essential cookies
+    clearNonEssentialCookies();
+    
+    // Show banner again
+    showCookieBanner();
+    
+    console.log('Cookie consent revoked');
+}
+
+function clearNonEssentialCookies() {
+    // Get all cookies
+    const cookies = document.cookie.split(';');
+    
+    // List of essential cookies to keep (add your essential cookies here)
+    const essentialCookies = ['cookieConsent', 'sessionId', 'csrf-token'];
+    
+    cookies.forEach(cookie => {
+        const cookieName = cookie.split('=')[0].trim();
+        if (!essentialCookies.includes(cookieName)) {
+            document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        }
+    });
+}
+
 // Export functions for potential module use
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
@@ -867,6 +1213,11 @@ if (typeof module !== 'undefined' && module.exports) {
         formatDate,
         getDirectionsToEvent,
         showLocationMessage,
-        hideLocationMessage
+        hideLocationMessage,
+        initializeCookieConsent,
+        getCookieConsent,
+        hasConsentForCategory,
+        setCookieIfAllowed,
+        revokeCookieConsentFunction
     };
 }

@@ -18,6 +18,84 @@
     
     <%- include('partials/footer') %>
     
+    <!-- Cookie Consent Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3>We Value Your Privacy</h3>
+                <p>
+                    We use cookies to enhance your experience on our community portal. 
+                    These help us provide personalized content and analyze site usage. 
+                    <a href="/privacy" target="_blank">Learn more about our privacy practices</a>
+                </p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button id="cookieDecline" class="cookie-btn cookie-btn-decline">Decline</button>
+                <button id="cookieSettings" class="cookie-btn cookie-btn-settings">Settings</button>
+                <button id="cookieAccept" class="cookie-btn cookie-btn-accept">Accept All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookieModal" class="cookie-modal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h2 class="cookie-modal-title">Cookie Preferences</h2>
+                <button id="cookieModalClose" class="cookie-modal-close">&times;</button>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3 class="cookie-category-title">Essential Cookies</h3>
+                    <div class="cookie-toggle active disabled" data-category="essential"></div>
+                </div>
+                <p class="cookie-category-description">
+                    These cookies are necessary for the website to function and cannot be disabled. 
+                    They are usually set in response to actions made by you, such as setting your privacy preferences or logging in.
+                </p>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3 class="cookie-category-title">Analytics Cookies</h3>
+                    <div class="cookie-toggle" data-category="analytics"></div>
+                </div>
+                <p class="cookie-category-description">
+                    These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. 
+                    This helps us improve our community portal's performance and user experience.
+                </p>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3 class="cookie-category-title">Functional Cookies</h3>
+                    <div class="cookie-toggle" data-category="functional"></div>
+                </div>
+                <p class="cookie-category-description">
+                    These cookies enable enhanced functionality and personalization, such as remembering your preferences 
+                    and providing personalized content recommendations for community events.
+                </p>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3 class="cookie-category-title">Marketing Cookies</h3>
+                    <div class="cookie-toggle" data-category="marketing"></div>
+                </div>
+                <p class="cookie-category-description">
+                    These cookies are used to deliver relevant advertisements and track the effectiveness of our marketing campaigns. 
+                    They help us show you content that's most relevant to your interests in community activities.
+                </p>
+            </div>
+
+            <div class="cookie-modal-actions">
+                <button id="cookieSaveSettings" class="cookie-btn cookie-btn-accept">Save Preferences</button>
+                <button id="cookieAcceptAll" class="cookie-btn cookie-btn-settings">Accept All</button>
+            </div>
+        </div>
+    </div>
+    
     <script src="/js/script.js"></script>
 </body>
 </html>
